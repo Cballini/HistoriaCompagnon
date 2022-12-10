@@ -1,0 +1,21 @@
+<resources>
+    <dimen name="app_margin">16dp</dimen>
+    <dimen name="double_app_margin">32dp</dimen>
+    <dimen name="small_margin">10dp</dimen>
+    <dimen name="big_margin">70dp</dimen>
+    <dimen name="big_margin_floating">80dp</dimen>
+    <dimen name="floating_margin">40dp</dimen>
+    <dimen name="txt_margin">5dp</dimen>
+    <dimen name="little_space">2dp</dimen>
+
+    <dimen name="cat_txt">16sp</dimen>
+    <dimen name="title_txt">20sp</dimen>
+    <dimen name="small_txt">8sp</dimen>
+    <dimen name="medium_txt">10sp</dimen>
+
+    <dimen name="button_height">42dp</dimen>
+    <dimen name="double_button_height">84dp</dimen>
+    <dimen name="spinner_weight">125dp</dimen>
+
+    <dimen name="icon_margin">120dp</dimen>
+</resources>

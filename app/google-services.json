@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "1063030743595",
+    "project_id": "historiacompagnon",
+    "storage_bucket": "historiacompagnon.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1063030743595:android:639f99a32a079a6f84406e",
+        "android_client_info": {
+          "package_name": "com.rp.historiacompagnon"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1063030743595-lvbu2nvqp89ju8v6uafhrpjq1pc0o79u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrQ-mMadNrqSw8ehDHKSaKPXxvjrLo9IM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1063030743595-lvbu2nvqp89ju8v6uafhrpjq1pc0o79u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

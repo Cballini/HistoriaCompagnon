@@ -1,4 +1,4 @@
-package com.example.historiacompagnon
+package com.rp.historiacompagnon
 
 import org.junit.Test
 
