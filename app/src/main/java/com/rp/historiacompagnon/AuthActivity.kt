@@ -13,44 +13,36 @@ import com.firebase.ui.auth.AuthUI.IdpConfig
 import com.firebase.ui.auth.AuthUI.IdpConfig.GoogleBuilder
 import com.firebase.ui.auth.ErrorCodes
 import com.firebase.ui.auth.IdpResponse
+import com.google.android.gms.auth.api.identity.BeginSignInRequest
 import com.google.android.material.snackbar.Snackbar
-import com.google.firebase.auth.FirebaseAuth
 
-class AuthActivity: FragmentActivity() {
+class AuthActivity : FragmentActivity() {
 
-    var resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-        handleSignInResponse(result.resultCode, result.data)
-    }
+    var resultLauncher =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+            handleSignInResponse(result.resultCode, result.data)
+        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_auth)
 
-        resultLauncher.launch(buildSignInIntent( /*link=*/null))
+        resultLauncher.launch(buildSignInIntent(null))
     }
 
-    fun buildSignInIntent(link: String?): Intent {
+    private fun buildSignInIntent(link: String?): Intent {
         val builder = AuthUI.getInstance().createSignInIntentBuilder()
-                .setTheme(com.firebase.ui.auth.R.style.FirebaseUI)
-                .setLogo(R.mipmap.ic_launcher)
-                .setAvailableProviders(getProviders())
-                // .setIsSmartLockEnabled(false)
+            .setTheme(com.firebase.ui.auth.R.style.FirebaseUI)
+            .setLogo(R.mipmap.ic_launcher)
+            .setAvailableProviders(getProviders())
+            .setIsSmartLockEnabled(false)
 
-            val customLayout = AuthMethodPickerLayout.Builder(R.layout.auth_custom_layout)
-                    .setGoogleButtonId(R.id.custom_google_signin_button)
-                   // .setEmailButtonId(R.id.custom_email_signin_button)
-                   // .setTosAndPrivacyPolicyId(R.id.custom_tos_pp)
-                    .build()
-            builder.setTheme(R.style.AppTheme)
-            builder.setAuthMethodPickerLayout(customLayout)
+        val customLayout = AuthMethodPickerLayout.Builder(R.layout.auth_custom_layout)
+            .setGoogleButtonId(R.id.custom_google_signin_button)
+            .build()
+        builder.setTheme(R.style.AppTheme)
+        builder.setAuthMethodPickerLayout(customLayout)
 
-        if (link != null) {
-            builder.setEmailLink(link)
-        }
-        val auth = FirebaseAuth.getInstance()
-        if (auth.currentUser != null && auth.currentUser!!.isAnonymous) {
-            builder.enableAnonymousUsersAutoUpgrade()
-        }
         return builder.build()
     }
 
@@ -59,12 +51,6 @@ class AuthActivity: FragmentActivity() {
         //GoogleProvider
         selectedProviders.add(GoogleBuilder().setScopes(ArrayList()).build())
 
-
-        //EmailProvider
-//        selectedProviders.add(EmailBuilder()
-//                    .setRequireName(false)
-//                    .setAllowNewAccounts(true)
-//                    .build())
         return selectedProviders
     }
 
@@ -92,7 +78,8 @@ class AuthActivity: FragmentActivity() {
             return
         }
         if (response.error!!.errorCode == ErrorCodes.ANONYMOUS_UPGRADE_MERGE_CONFLICT) {
-            Snackbar.make(currentFocus!!, "ANONYMOUS_UPGRADE_MERGE_CONFLICT", Snackbar.LENGTH_SHORT).show()
+            Snackbar.make(currentFocus!!, "ANONYMOUS_UPGRADE_MERGE_CONFLICT", Snackbar.LENGTH_SHORT)
+                .show()
         }
         if (response.error!!.errorCode == ErrorCodes.ERROR_USER_DISABLED) {
             Snackbar.make(currentFocus!!, "ERROR_USER_DISABLED", Snackbar.LENGTH_SHORT).show()
@@ -102,4 +89,10 @@ class AuthActivity: FragmentActivity() {
         Log.e("error", "Sign-in error: ", response.error)
     }
 
+    companion object{
+        @JvmStatic
+        fun createIntent(context: Context): Intent? {
+            return Intent(context, AuthActivity::class.java)
+        }
+    }
 }

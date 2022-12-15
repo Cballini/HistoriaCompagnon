@@ -1,12 +1,12 @@
 package com.rp.historiacompagnon.entity
 
-class Race(var familia :String,
-           var familiaInstinct :String,
-           var espece :String,
-           var especeInstinct :String,
-           var vitesse :String) {
+data class Race(
+    var familia: String, // TODO voir remplacer par une enum ?
+    var familiaInstinct: String, // TODO voir automatique ?
+    var species: String, // TODO voir remplacer par une enum ?
+    var speciesInstinct: String, // TODO voir automatique ?
+    var vitesse: String
+) {
 
-    // TODO Voir si ajout id
-
-    constructor(): this("","","","","")
+    constructor() : this("", "", "", "", "")
 }

@@ -16,8 +16,10 @@
     <color name="colorCatTitle">#3F4C57</color>
     <color name="colorTxt">#DAD8D2</color>
 
-    <color name="dark_background">#3C3837</color>
-    <color name="dark_panel">#575150</color>
+    <color name="colorTopAppBar">#3F4C57</color>
+
+    <color name="darkBackground">#3C3837</color>
+    <color name="darkPanel">#575150</color>
 
     <color name="purple_200">#FFBB86FC</color>
     <color name="purple_500">#FF6200EE</color>

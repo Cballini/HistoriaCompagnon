@@ -1,8 +1,10 @@
 package com.rp.historiacompagnon.entity
 
-class Team(var invitationCode: String, var mj: String, var players: ArrayList<String>) {
+data class Team(var invitationCode: String,
+                var mj: String, // user.key
+                var players: ArrayList<String>, // character.key
+                var name: String,
+                var key: String) {
 
-    // TODO mj = user.key, players = list user.key
-
-    constructor(): this("", "", ArrayList())
+    constructor(): this("", "", ArrayList(), "", "")
 }

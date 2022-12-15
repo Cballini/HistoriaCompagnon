@@ -1,3 +1,39 @@
 <resources>
-    <string name="app_name">HistoriaCompagnon</string>
+    <string name="app_name">Historia Compagnon</string>
+    <string name="historia">Historia</string>
+    <string name="historia_app">Historia Compagnon</string>
+    <string name="web_client_id">1063030743595-qpf4uvvl1up0ltb41hfbbebgv6rciv4s.apps.googleusercontent.com</string>
+
+    <string name="character">Personnage</string>
+    <string name="abilities">Aptitudes</string>
+    <string name="fight">Combat</string>
+    <string name="inventory">Inventaire</string>
+    <string name="relashionship">Relations</string>
+    <string name="settings">Paramètres</string>
+    <string name="teams">Equipes</string>
+    <string name="credit">Crédits</string>
+    <string name="logout">Déconnexion</string>
+
+    <!-- Ecran team -->
+    <string name="team_title">Équipe</string>
+    <string name="team_button_create">Créer\nune équipe</string>
+    <string name="team_button_join">Rejoindre\nune équipe</string>
+    <string name="team_choose_name">Saisir un nom :</string>
+    <string name="team_invitation_code">Code invitation :</string>
+    <string name="team_join_as">Vous rejoindrez le groupe en tant que :</string>
+    <string name="team_mj">MJ</string>
+    <string name="team_player">Joueur</string>
+
+    <string name="cancel">Annuler</string>
+    <string name="back">Retour</string>
+    <string name="ok">Ok</string>
+    <string name="validate">Valider</string>
+    <string name="copy">Copié !</string>
+
+    <string name="credit_msg">Icônes by Icons8 : \n - sword: https://icons8.com/icon/qA0pYlgnkEYf/sword
+        \n - relationship: https://icons8.com/icon/Xhdwg9TZV1qD/relationship
+        \n - skill: https://icons8.com/icon/EZX8qx3OoQLq/skill
+        \n  - skill: https://icons8.com/icon/ScTh4IXihnF9/skill
+        \n - potion: https://icons8.com/icon/kVCguktVfr2x/potion
+    </string>
 </resources>

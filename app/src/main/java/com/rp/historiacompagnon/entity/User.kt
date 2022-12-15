@@ -1,7 +1,13 @@
 package com.rp.historiacompagnon.entity
 
-class User(var email: String,
-           var nom: String) {
+data class User(
+    var email: String?,
+    var nom: String?,
+    var currentTeam: String, // team.key
+    var key: String
+) {
 
-    constructor(): this("", "")
+    var teams: ArrayList<String> = ArrayList() // team.key évol
+
+    constructor() : this("", "", "", "")
 }

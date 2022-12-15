@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_character"
+        android:icon="@drawable/info_perso"
+        android:title="@string/character"/>
+
+    <item
+        android:id="@+id/navigation_abilities"
+        android:icon="@drawable/job"
+        android:title="@string/abilities"/>
+
+    <item
+        android:id="@+id/navigation_fight"
+        android:icon="@drawable/fight"
+        android:title="@string/fight"/>
+
+    <item
+        android:id="@+id/navigation_relashionship"
+        android:icon="@drawable/relashionship"
+        android:title="@string/relashionship"/>
+
+    <item
+        android:id="@+id/navigation_inventory"
+        android:icon="@drawable/potion"
+        android:title="@string/inventory"/>
+
+</menu>
