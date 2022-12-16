@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Historia Compagnon</string>
+    <string name="app_name">Historia/nCompagnon</string>
     <string name="historia">Historia</string>
     <string name="historia_app">Historia Compagnon</string>
     <string name="web_client_id">1063030743595-qpf4uvvl1up0ltb41hfbbebgv6rciv4s.apps.googleusercontent.com</string>
@@ -20,9 +20,10 @@
     <string name="team_button_join">Rejoindre\nune équipe</string>
     <string name="team_choose_name">Saisir un nom :</string>
     <string name="team_invitation_code">Code invitation :</string>
-    <string name="team_join_as">Vous rejoindrez le groupe en tant que :</string>
-    <string name="team_mj">MJ</string>
-    <string name="team_player">Joueur</string>
+    <string name="team_join_as_mj">Vous rejoindrez le groupe en tant que MJ.</string>
+    <string name="team_join_as_player">Vous rejoindrez le groupe en tant que joueur.</string>
+    <string name="team_invalid_invitation">Aucune équipe ne correspond à ce code</string>
+    <string name="team_empty_edit">Aucune information saisie</string>
 
     <string name="cancel">Annuler</string>
     <string name="back">Retour</string>

@@ -19,16 +19,16 @@ import com.google.android.material.appbar.MaterialToolbar
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.ktx.auth
-import com.google.firebase.ktx.Firebase
+import com.rp.historiacompagnon.entity.Character
 import com.rp.historiacompagnon.entity.Team
 import com.rp.historiacompagnon.entity.User
 import com.rp.historiacompagnon.fragment.*
 import com.rp.historiacompagnon.viewModel.MainViewModel
 
 class MainActivity : AppCompatActivity() {
-    private val NUM_PAGES = 5
+    private val NUM_PAGES = 6
     private lateinit var mPager: ViewPager2
+    private var sharedPrefCurrentCharacter: String? = ""
     // TODO check si besoin toutes permissions dans manifest
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,6 +41,11 @@ class MainActivity : AppCompatActivity() {
             finish()
             return
         }
+
+        sharedPrefCurrentCharacter = getSharedPreferences(
+            Preferences.PREF_CURRENT_CHARACTER,
+            Preferences.PRIVATE_MODE
+        ).getString(Preferences.PREF_CURRENT_CHARACTER, "")
 
         initData()
         initNavigationView()
@@ -60,18 +65,7 @@ class MainActivity : AppCompatActivity() {
 
                 // une fois qu'on a user on va chercher la team actuelle (si existe)
                 if (viewModel.user.value?.currentTeam?.isNotEmpty() == true) {
-                    val liveDateTeam = viewModel.getTeamDataSnapshotLiveData(viewModel.user.value!!.currentTeam)
-                    liveDateTeam.observe(this) { dataSnapshot ->
-                        if (dataSnapshot != null) {
-                            if (dataSnapshot.hasChildren()) {
-                                for (c in dataSnapshot.children) {
-                                    if (null != c.key) {
-                                        viewModel._currentTeam.value = c.getValue(Team::class.java)
-                                    }
-                                }
-                            }
-                        }
-                    }
+                    getTeam()
                 }
 
             } else {
@@ -83,18 +77,70 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Récupération et écoute de la team
+     */
+    private fun getTeam() {
+        val liveDateTeam =
+            viewModel.getTeamDataSnapshotLiveData(viewModel.user.value!!.currentTeam)
+        liveDateTeam.observe(this) { dataSnapshot ->
+            if (dataSnapshot != null) {
+                if (dataSnapshot.hasChildren()) {
+                    for (c in dataSnapshot.children) {
+                        if (null != c.key) {
+                            viewModel._currentTeam.value = c.getValue(Team::class.java)
+                        }
+                    }
+
+                    // une fois qu'on a la team, les persos
+                    getTeamCharacters()
+                }
+            }
+        }
+    }
+
+    /**
+     * Récupération et écoute des personnages de la team
+     */
+    private fun getTeamCharacters() {
+        val liveDataCharacters =
+            viewModel.getTeamCharactersDataSnapshotLiveData()
+        liveDataCharacters.observe(this) { dataSnapshot ->
+            if (dataSnapshot != null) {
+                if (dataSnapshot.hasChildren()) {
+                    val characters = ArrayList<Character>()
+                    for (c in dataSnapshot.children) {
+                        if (null != c.key) {
+                            val character = c.getValue(Character::class.java)!!
+                            if (sharedPrefCurrentCharacter!!.isNotBlank()
+                                && character.key == sharedPrefCurrentCharacter) {
+                                viewModel._currentCharacter.value = character
+                            }
+                            characters.add(character)
+                        }
+                    }
+                    viewModel._currentTeamCharacters.value = characters
+                }
+            }
+        }
+    }
+
+    /**
+     * Initialisation menu top app bar
+     */
     private fun initTopAppBar() {
         val topAppBar = findViewById<MaterialToolbar>(R.id.topAppBar)
 
         topAppBar.setNavigationOnClickListener {
-            Toast.makeText(applicationContext,"nav", Toast.LENGTH_SHORT).show()
+            Toast.makeText(applicationContext, "nav", Toast.LENGTH_SHORT).show()
         }
 
         topAppBar.setOnMenuItemClickListener { menuItem ->
             Log.i("setOnMenuItemClick:", menuItem.toString())
             when (menuItem.itemId) {
                 R.id.navigation_team -> {
-                    TeamDialogFragment.newInstance(getString(R.string.app_name)).show(supportFragmentManager, TeamDialogFragment.TAG)
+                    TeamDialogFragment.newInstance(getString(R.string.app_name))
+                        .show(supportFragmentManager, TeamDialogFragment.TAG)
                     true
                 }
                 R.id.item_credit -> {
@@ -123,6 +169,9 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Initialisation navigation
+     */
     private fun initNavigationView() {
         // Instantiate a ViewPager and a PagerAdapter.
         mPager = findViewById(R.id.fragment_container)
@@ -134,13 +183,23 @@ class MainActivity : AppCompatActivity() {
         mPager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
             @RequiresApi(Build.VERSION_CODES.O)
             override fun onPageSelected(position: Int) {
-                when(position){
-                    0 -> findViewById<BottomNavigationView>(R.id.navigation).selectedItemId = R.id.navigation_character
-                    1 -> findViewById<BottomNavigationView>(R.id.navigation).selectedItemId = R.id.navigation_abilities
-                    2 -> findViewById<BottomNavigationView>(R.id.navigation).selectedItemId = R.id.navigation_fight
-                    3 -> findViewById<BottomNavigationView>(R.id.navigation).selectedItemId = R.id.navigation_relashionship
-                    4 -> findViewById<BottomNavigationView>(R.id.navigation).selectedItemId = R.id.navigation_inventory
-                    else -> findViewById<BottomNavigationView>(R.id.navigation).selectedItemId = R.id.navigation_character
+                when (position) {
+                    0 -> findViewById<BottomNavigationView>(R.id.navigation).selectedItemId =
+                        R.id.navigation_character
+                    1 -> findViewById<BottomNavigationView>(R.id.navigation).selectedItemId =
+                        R.id.navigation_abilities
+                    2 -> findViewById<BottomNavigationView>(R.id.navigation).selectedItemId =
+                        R.id.navigation_fight
+                    3 -> findViewById<BottomNavigationView>(R.id.navigation).selectedItemId =
+                        R.id.navigation_relashionship
+                    4 -> {
+                        findViewById<BottomNavigationView>(R.id.navigation).selectedItemId =
+                            R.id.navigation_inventory
+                    }
+                    else -> {
+                        findViewById<BottomNavigationView>(R.id.navigation).selectedItemId =
+                            R.id.navigation_character
+                    }
                 }
                 super.onPageSelected(position)
             }
@@ -183,7 +242,7 @@ class MainActivity : AppCompatActivity() {
         override fun getItemCount(): Int = NUM_PAGES
 
         override fun createFragment(position: Int): Fragment {
-            return when(position){
+            return when (position) {
                 0 -> CharacterFragment()
                 1 -> AbilitiesFragment()
                 2 -> FightFragment()

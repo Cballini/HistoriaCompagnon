@@ -20,6 +20,7 @@ data class Character(
     var relationships: ArrayList<Pnj>,
     var jobs: ArrayList<Job>,
     var player: String, // user.key
+    var team: String, // team.key
     var key: String
 ) {
     constructor() : this(
@@ -42,6 +43,9 @@ data class Character(
         ArrayList(),
         ArrayList(),
         "",
+        "",
         ""
     )
+
+    fun concatFullName(): String = this.name + ' ' + this.familyName
 }

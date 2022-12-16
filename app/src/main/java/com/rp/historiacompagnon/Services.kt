@@ -2,6 +2,8 @@ package com.rp.historiacompagnon
 
 import android.content.ContentValues.TAG
 import android.util.Log
+import com.google.android.gms.tasks.Task
+import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.FirebaseDatabase
 import com.rp.historiacompagnon.entity.Team
 import com.rp.historiacompagnon.entity.User
@@ -22,7 +24,10 @@ object Services {
     fun getTeamDatabase(teamKey: String): FirebaseQueryLiveData = FirebaseQueryLiveData(database.child("team").orderByChild("key").equalTo(teamKey))
 
     @JvmStatic
-    fun getCharacterDatabase(characterKey: String): FirebaseQueryLiveData = FirebaseQueryLiveData(database.child("character").orderByChild("key").equalTo(characterKey))
+    fun getTeamByInvitation(invitationCode: String): Task<DataSnapshot> = database.child("team").orderByChild("invitationCode").equalTo(invitationCode).get()
+
+    @JvmStatic
+    fun getTeamCharactersDatabase(teamKey: String): FirebaseQueryLiveData = FirebaseQueryLiveData(database.child("character").orderByChild("team").equalTo(teamKey))
 
 
     /******** EDIT *******/

@@ -28,6 +28,13 @@ class MainViewModel {
         _currentCharacter.value = Character()
     }
 
+    val _currentTeamCharacters = MutableLiveData<ArrayList<Character>>()
+    val currentTeamCharacters : LiveData<ArrayList<Character>> get() = _currentTeamCharacters
+    init {
+        _currentTeamCharacters.value = ArrayList()
+
+    }
+
 
     fun getUserDataSnapshotLiveData(email: String): LiveData<DataSnapshot?> {
         return Services.getUserDatabase(email)
@@ -41,9 +48,10 @@ class MainViewModel {
         return Services.getTeamDatabase(teamKey)
     }
 
-    fun getCharacterDataSnapshotLiveData(characterKey: String): LiveData<DataSnapshot?> {
-        return Services.getCharacterDatabase(characterKey)
+    fun getTeamCharactersDataSnapshotLiveData(): LiveData<DataSnapshot?> {
+        return Services.getTeamCharactersDatabase(currentTeam.value!!.key)
     }
+
 
     fun editUser(user: User){
         Services.editUser(user)

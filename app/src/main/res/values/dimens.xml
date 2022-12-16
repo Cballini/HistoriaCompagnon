@@ -20,4 +20,7 @@
     <dimen name="spinner_weight">125dp</dimen>
 
     <dimen name="icon_margin">120dp</dimen>
+
+
+    <dimen name="player_card_height">120dp</dimen>
 </resources>
