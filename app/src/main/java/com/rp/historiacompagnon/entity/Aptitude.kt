@@ -10,9 +10,12 @@ data class Aptitude(
     var heal: String,
     var scope: String,
     var duration: String,
+    var use: String,
+    var used: Int,
     var type: AptitudeTypeEnum,
-    var tag: ArrayList<AptitudeTagEnum>
+    var tag: ArrayList<AptitudeTagEnum>,
+    var shortDescription: String
 ) {
 
-    constructor() : this("", "", "", "", "", "", AptitudeTypeEnum.OTHER, ArrayList())
+    constructor() : this("", "", "", "", "", "", "", 0, AptitudeTypeEnum.OTHER, ArrayList(), "")
 }

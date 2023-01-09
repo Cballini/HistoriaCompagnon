@@ -15,7 +15,7 @@
         android:focusable="true"
         app:strokeWidth="1dp"
         app:strokeColor="@color/stroke_color"
-        android:backgroundTint="@color/darkPanel">
+        android:backgroundTint="@color/dark_panel">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -62,7 +62,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/txt_margin"
                         android:text="Edenti"
-                        android:textColor="@color/colorTxt" />
+                        android:textColor="@color/color_cat" />
 
                     <TextView
                         android:id="@+id/player_age"
@@ -70,7 +70,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/txt_margin"
                         android:text="- 34 ans"
-                        android:textColor="@color/colorTxt" />
+                        android:textColor="@color/color_cat" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -85,7 +85,7 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/txt_margin"
                         android:text="Alchimiste - Iatrochimiste - Médecin"
-                        android:textColor="@color/colorTxt" />
+                        android:textColor="@color/color_cat" />
                 </LinearLayout>
             </LinearLayout>
         </LinearLayout>

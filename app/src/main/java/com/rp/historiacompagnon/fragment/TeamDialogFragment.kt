@@ -5,6 +5,7 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -207,6 +208,7 @@ class TeamDialogFragment : DialogFragment(), RecyclerViewClickListener {
 
                 MainActivity.viewModel._currentCharacter.value =
                     MainActivity.viewModel._currentTeamCharacters.value!![position]
+
                 dismiss()
             }
         }

@@ -1,24 +1,24 @@
 <resources xmlns:ns1="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.NoActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
         <item name="colorSecondaryContainer">@color/colorPrimaryDark</item>
-        <item name="colorOnPrimary">@color/colorTxt</item>
+        <item name="colorOnPrimary">@color/color_cat</item>
     </style>
 
     <style name="SpinnerTxt" parent="TextAppearance.AppCompat">
-        <item name="android:textColor">@color/colorTxt</item>
+        <item name="android:textColor">@color/color_cat</item>
 
     </style>
 
     <style name="Toolbar" parent="Widget.AppCompat.Toolbar">
         <item name="android:elevation" ns1:ignore="NewApi">@dimen/design_appbar_elevation</item>
-        <item name="android:background">@color/darkPanel</item>
-        <item name="titleTextColor">@color/colorTxt</item>
-        <item name="subtitleTextColor">@color/colorTxt</item>
+        <item name="android:background">@color/dark_bar</item>
+        <item name="titleTextColor">@color/color_cat</item>
+        <item name="subtitleTextColor">@color/color_cat</item>
 
         <item name="android:theme">@style/ThemeOverlay.MaterialComponents.Toolbar.Primary</item>
         <item name="popupTheme">@style/ThemeOverlay.MaterialComponents.Toolbar.Popup.Primary</item>
@@ -27,7 +27,6 @@
     <style name="TextAppearance_Toolbar" parent="@style/TextAppearance.MaterialComponents.Headline6">
         <item name="fontFamily">@font/fancyquisley</item>
         <item name="android:textSize">@dimen/app_title_txt</item>
-
     </style>
 
 </resources>

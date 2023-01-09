@@ -1,5 +1,6 @@
 <resources>
     <dimen name="app_margin">16dp</dimen>
+    <dimen name="app_margin_and_half">24dp</dimen>
     <dimen name="double_app_margin">32dp</dimen>
     <dimen name="small_margin">10dp</dimen>
     <dimen name="medium_margin">40dp</dimen>
@@ -17,10 +18,11 @@
 
     <dimen name="button_height">42dp</dimen>
     <dimen name="double_button_height">84dp</dimen>
-    <dimen name="spinner_weight">125dp</dimen>
+    <dimen name="spinner_weight">200dp</dimen>
 
     <dimen name="icon_margin">120dp</dimen>
-
+    <dimen name="icon_edit_size">30dp</dimen>
+    <dimen name="button_mini">24dp</dimen>
 
     <dimen name="player_card_height">120dp</dimen>
 </resources>

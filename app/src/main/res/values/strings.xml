@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Historia/nCompagnon</string>
+    <string name="app_name">Historia   Compagnon</string>
     <string name="historia">Historia</string>
     <string name="historia_app">Historia Compagnon</string>
     <string name="web_client_id">1063030743595-qpf4uvvl1up0ltb41hfbbebgv6rciv4s.apps.googleusercontent.com</string>
@@ -25,11 +25,91 @@
     <string name="team_invalid_invitation">Aucune équipe ne correspond à ce code</string>
     <string name="team_empty_edit">Aucune information saisie</string>
 
+    <!-- Ecran character -->
+    <string name="character_measures">%1$d ans - %2$d cm - %3$d kg</string>
+    <string name="description">Description</string>
+    <string name="character_rank">Rang : %1$d</string>
+    <!-- Edit base -->
+    <string name="character_edit_base_title">Personnage</string>
+    <string name="character_edit_base_name">Prénom</string>
+    <string name="character_edit_base_family_name">Nom</string>
+    <string name="character_edit_base_race">Familia</string>
+    <string name="character_edit_base_race_instinct">Instinct de la familia</string>
+    <string name="character_edit_base_species">Espèce</string>
+    <string name="character_edit_base_species_instinct">Instinct de l\'espèce</string>
+    <string name="character_edit_base_age">Age</string>
+    <string name="character_edit_base_size">Taille cm</string>
+    <string name="character_edit_base_weight">Poids kg</string>
+    <!-- Edit career -->
+    <string name="character_edit_career_title">Carrière</string>
+    <string name="character_edit_career_name">Nom</string>
+    <string name="character_edit_career_rank">Rang</string>
+    <string name="character_edit_career_description">Description</string>
+    <!-- Edit destiny -->
+    <string name="character_edit_destiny_title">Destinée</string>
+    <string name="character_edit_destiny_value">Valeur</string>
+    <string name="character_edit_destiny_ideal">Idéal</string>
+    <string name="character_edit_destiny_link">Lien</string>
+    <string name="character_edit_destiny_defect">Défaut</string>
+    <string name="character_edit_destiny_trait">Trait de caractère</string>
+
+    <!-- Ecran abilities -->
+    <string name="abilities_add_job">Ajouter un métier</string>
+    <string name="abilities_modifier">Bonus de maîtrise: </string>
+    <string name="abilities_specialty_lvl">%1$s - Lvl %2$d</string>
+    <string name="abilities_plus_something">+ %1$d</string>
+    <string name="abilities_life_dice_lvl">Points de vie / niveau: </string>
+    <string name="abilities_life_dice_lvl_value">%1 + modificateur CONST</string>
+    <string name="abilities_armors">Armures: </string>
+    <string name="abilities_weapons">Armes: </string>
+    <string name="abilities_throw_save">Jets de sauvegarde: </string>
+    <string name="abilities_aptitude">Aptitude</string>
+    <string name="aptitude_type">Type: %1$s</string>
+    <!-- Edit job -->
+    <string name="job_edit_title">Métier</string>
+    <string name="job_edit_specialty">Spécialisation</string>
+    <string name="job_edit_modifier">Bonus maîtrise</string>
+    <string name="job_edit_level">Niveau</string>
+    <string name="job_edit_dice_lvl">Dé de vie par niveau</string>
+    <string name="job_edit_armors">Armures</string>
+    <string name="job_edit_weapons">Armes</string>
+    <string name="job_edit_throw_save">Bonus jets de sauvegarde</string>
+    <!-- Delete job -->
+    <string name="delete_job">Supprimer métier</string>
+    <string name="delete_job_txt">Etes-vous sûr de vouloir supprimer le métier %1$s ?</string>
+    <!-- Edit Aptitude -->
+    <string name="aptitude_edit_title">Aptitude</string>
+    <string name="aptitude_edit_short_description">Description courte</string>
+    <string name="aptitude_edit_damage">Dégats</string>
+    <string name="aptitude_edit_heal">Soin</string>
+    <string name="aptitude_edit_scope">Portée</string>
+    <string name="aptitude_edit_duration">Durée</string>
+    <string name="aptitude_edit_effect">Effet</string>
+    <string name="aptitude_edit_use">Nombre d\'utilisation</string>
+    <string name="aptitude_edit_used">Utilisé :</string>
+    <string name="aptitude_edit_type">Type</string>
+    <string name="aptitude_edit_tag">Tag</string>
+    <!-- Delete aptitude -->
+    <string name="delete_aptitude">Supprimer aptitude</string>
+    <string name="delete_aptitude_txt">Etes-vous sûr de vouloir supprimer l\'aptitude %1$s ?</string>
+
+    <!-- Ecran fight -->
+    <string name="fight_pv">PV</string>
+    <string name="fight_pv_bonus">+/-</string>
+    <string name="fight_pv_dice">Dés de vie</string>
+
     <string name="cancel">Annuler</string>
     <string name="back">Retour</string>
     <string name="ok">Ok</string>
+    <string name="yes">Oui</string>
     <string name="validate">Valider</string>
     <string name="copy">Copié !</string>
+    <string name="tiret_2">%1$s - %2$s</string>
+    <string name="filter_by">Trier par: </string>
+    <string name="name">Nom</string>
+    <string name="first">\u0020 en premier</string>
+    <string name="plus">+</string>
+    <string name="minus">-</string>
 
     <string name="credit_msg">Icônes by Icons8 : \n - sword: https://icons8.com/icon/qA0pYlgnkEYf/sword
         \n - relationship: https://icons8.com/icon/Xhdwg9TZV1qD/relationship

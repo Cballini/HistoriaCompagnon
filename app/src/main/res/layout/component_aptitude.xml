@@ -1,0 +1,470 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/aptitude_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="@dimen/txt_margin"
+        android:paddingVertical="@dimen/small_margin"
+        android:background="@color/dark_bar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/aptitude_type_icon"
+            android:layout_width="@dimen/icon_edit_size"
+            android:layout_height="@dimen/icon_edit_size"
+            android:layout_marginHorizontal="@dimen/small_margin"
+            android:src="@drawable/spell"
+            app:tint="@color/colorPrimary"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintStart_toEndOf="@+id/aptitude_type_icon"
+            app:layout_constraintEnd_toStartOf="@+id/aptitude_expand"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+            <TextView
+                android:id="@+id/aptitude_name"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Protection contre les armes"
+                android:layout_marginHorizontal="@dimen/small_margin"
+                android:textSize="@dimen/cat_txt"
+                android:textColor="@color/color_txt"/>
+
+            <TextView
+                android:id="@+id/aptitude_short_description"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="20 pm + 20 en armure"
+                android:textColor="@color/color_txt"
+                android:layout_marginHorizontal="@dimen/small_margin"/>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/aptitude_expand"
+            android:layout_width="@dimen/icon_edit_size"
+            android:layout_height="@dimen/icon_edit_size"
+            android:src="@drawable/expand_less"
+            android:layout_marginEnd="@dimen/txt_margin"
+            app:tint="@color/color_txt"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/aptitude_divider_between"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/aptitude_main"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/aptitude_unfolded"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/dark_bar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/aptitude_divider_between">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/aptitude_damage_heal_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/dark_bar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/aptitude_damage_layout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="@dimen/small_margin"
+                android:paddingVertical="@dimen/small_margin"
+                android:background="@color/dark_bar"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/aptitude_heal_layout"
+                app:layout_constraintTop_toTopOf="parent">
+                <TextView
+                    android:id="@+id/aptitude_damage"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/txt_margin"
+                    android:text="Dégats"
+                    android:textColor="@color/color_txt"
+                    android:background="@color/colorPrimaryDark"
+                    android:padding="@dimen/txt_margin"
+                    android:elevation="1dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/aptitude_damage_value"
+                    app:layout_constraintStart_toStartOf="@+id/aptitude_damage_value" />
+
+                <TextView
+                    android:id="@+id/aptitude_damage_value"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="30 d4 + const + si blabla fait ça aaaaaaaaa"
+                    android:textColor="@color/color_txt"
+                    android:background="@color/dark_panel"
+                    android:paddingHorizontal="@dimen/small_margin"
+                    android:paddingBottom="@dimen/txt_margin"
+                    android:paddingTop="@dimen/app_margin_and_half"
+                    android:layout_marginTop="@dimen/app_margin"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/aptitude_heal_layout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="@dimen/small_margin"
+                android:paddingVertical="@dimen/small_margin"
+                android:background="@color/dark_bar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/aptitude_damage_layout"
+                app:layout_constraintTop_toTopOf="parent">
+                <TextView
+                    android:id="@+id/aptitude_heal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/txt_margin"
+                    android:text="Soin"
+                    android:textColor="@color/color_txt"
+                    android:background="@color/colorPrimaryDark"
+                    android:padding="@dimen/txt_margin"
+                    android:elevation="1dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/aptitude_heal_value"
+                    app:layout_constraintStart_toStartOf="@+id/aptitude_heal_value" />
+
+                <TextView
+                    android:id="@+id/aptitude_heal_value"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="30 d4 + const + si blabla fait ça"
+                    android:textColor="@color/color_txt"
+                    android:background="@color/dark_panel"
+                    android:paddingHorizontal="@dimen/small_margin"
+                    android:paddingBottom="@dimen/txt_margin"
+                    android:paddingTop="@dimen/app_margin_and_half"
+                    android:layout_marginTop="@dimen/app_margin"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/aptitude_scope_duration_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/dark_bar"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/aptitude_damage_heal_layout">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/aptitude_scope_layout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="@dimen/small_margin"
+                android:paddingVertical="@dimen/txt_margin"
+                android:background="@color/dark_bar"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/aptitude_duration_layout"
+                app:layout_constraintTop_toTopOf="parent">
+                <TextView
+                    android:id="@+id/aptitude_scope"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/txt_margin"
+                    android:text="Portée"
+                    android:textColor="@color/color_txt"
+                    android:background="@color/colorPrimaryDark"
+                    android:padding="@dimen/txt_margin"
+                    android:elevation="1dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/aptitude_scope_value"
+                    app:layout_constraintStart_toStartOf="@+id/aptitude_scope_value" />
+
+                <TextView
+                    android:id="@+id/aptitude_scope_value"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="30 d4 + const + si blabla fait ça aaaaaaaaa"
+                    android:textColor="@color/color_txt"
+                    android:background="@color/dark_panel"
+                    android:paddingHorizontal="@dimen/small_margin"
+                    android:paddingBottom="@dimen/txt_margin"
+                    android:paddingTop="@dimen/app_margin_and_half"
+                    android:layout_marginTop="@dimen/app_margin"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/aptitude_duration_layout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingHorizontal="@dimen/small_margin"
+                android:paddingVertical="@dimen/txt_margin"
+                android:background="@color/dark_bar"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/aptitude_scope_layout"
+                app:layout_constraintTop_toTopOf="parent">
+                <TextView
+                    android:id="@+id/aptitude_duration"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/txt_margin"
+                    android:text="Durée"
+                    android:textColor="@color/color_txt"
+                    android:background="@color/colorPrimaryDark"
+                    android:padding="@dimen/txt_margin"
+                    android:elevation="1dp"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="@+id/aptitude_duration_value"
+                    app:layout_constraintStart_toStartOf="@+id/aptitude_duration_value" />
+
+                <TextView
+                    android:id="@+id/aptitude_duration_value"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:text="30 d4 + const + si blabla fait ça"
+                    android:textColor="@color/color_txt"
+                    android:background="@color/dark_panel"
+                    android:paddingHorizontal="@dimen/small_margin"
+                    android:paddingBottom="@dimen/txt_margin"
+                    android:paddingTop="@dimen/app_margin_and_half"
+                    android:layout_marginTop="@dimen/app_margin"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/aptitude_use_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/small_margin"
+            android:paddingVertical="@dimen/txt_margin"
+            android:background="@color/dark_bar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/aptitude_scope_duration_layout">
+
+            <TextView
+                android:id="@+id/aptitude_use"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/txt_margin"
+                android:text="@string/aptitude_edit_use"
+                android:textColor="@color/color_txt"
+                android:background="@color/colorPrimaryDark"
+                android:padding="@dimen/txt_margin"
+                android:elevation="1dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/aptitude_use_value"
+                app:layout_constraintStart_toStartOf="@+id/aptitude_use_value" />
+
+            <TextView
+                android:id="@+id/aptitude_use_value"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/app_margin"
+                android:background="@color/dark_panel"
+                android:paddingHorizontal="@dimen/small_margin"
+                android:paddingTop="@dimen/app_margin_and_half"
+                android:paddingBottom="@dimen/txt_margin"
+                android:text="3/ repos court"
+                android:textColor="@color/color_txt"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/dark_panel"
+                android:paddingVertical="@dimen/txt_margin"
+                android:paddingHorizontal="@dimen/small_margin"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/aptitude_use_value">
+
+                <TextView
+                    android:id="@+id/aptitude_used_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/aptitude_edit_used"
+                    android:textColor="@color/color_txt"
+                    android:textStyle="bold"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+                <TextView
+                    android:id="@+id/aptitude_used_value"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="2 fois"
+                    android:layout_marginHorizontal="@dimen/txt_margin"
+                    android:textColor="@color/color_txt"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/aptitude_used_txt"/>
+
+                <ImageView
+                    android:id="@+id/aptitude_add_used"
+                    android:layout_width="@dimen/button_mini"
+                    android:layout_height="@dimen/button_mini"
+                    android:layout_marginEnd="@dimen/txt_margin"
+                    android:src="@drawable/ic_baseline_add_24"
+                    app:tint="@color/light_green"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/aptitude_minus_used"/>
+
+                <ImageView
+                    android:id="@+id/aptitude_minus_used"
+                    android:layout_width="@dimen/button_mini"
+                    android:layout_height="@dimen/button_mini"
+                    android:layout_marginEnd="@dimen/txt_margin"
+                    android:src="@drawable/ic_baseline_remove_24"
+                    app:tint="@color/red"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/aptitude_reset_used"/>
+
+                <ImageView
+                    android:id="@+id/aptitude_reset_used"
+                    android:layout_width="@dimen/button_mini"
+                    android:layout_height="@dimen/button_mini"
+                    android:layout_marginEnd="@dimen/txt_margin"
+                    android:src="@drawable/ic_baseline_autorenew_24"
+                    app:tint="@color/color_txt"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"/>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/aptitude_effect_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/small_margin"
+            android:paddingVertical="@dimen/txt_margin"
+            android:background="@color/dark_bar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/aptitude_use_layout">
+
+            <TextView
+                android:id="@+id/aptitude_effect"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/txt_margin"
+                android:text="Effet"
+                android:textColor="@color/color_txt"
+                android:background="@color/colorPrimaryDark"
+                android:padding="@dimen/txt_margin"
+                android:elevation="1dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/aptitude_effect_value"
+                app:layout_constraintStart_toStartOf="@+id/aptitude_effect_value" />
+
+            <TextView
+                android:id="@+id/aptitude_effect_value"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/app_margin"
+                android:background="@color/dark_panel"
+                android:paddingHorizontal="@dimen/small_margin"
+                android:paddingTop="@dimen/app_margin_and_half"
+                android:paddingBottom="@dimen/txt_margin"
+                android:text="30 d4 + const + si blabla fait ça"
+                android:textColor="@color/color_txt"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+        <TextView
+            android:id="@+id/aptitude_type"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/small_margin"
+            android:layout_marginHorizontal="@dimen/app_margin"
+            android:text="Type: sort"
+            android:textColor="@color/color_txt"
+            app:layout_constraintTop_toBottomOf="@+id/aptitude_effect_layout"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/aptitude_tag"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/txt_margin"
+            android:layout_marginHorizontal="@dimen/app_margin"
+            android:text="Combat - Soin"
+            android:textStyle="italic"
+            android:textColor="@color/color_txt"
+            app:layout_constraintTop_toTopOf="@+id/aptitude_type"
+            app:layout_constraintBottom_toBottomOf="@+id/aptitude_type"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <ImageView
+            android:id="@+id/aptitude_type_delete"
+            android:layout_width="@dimen/button_mini"
+            android:layout_height="@dimen/button_mini"
+            android:src="@drawable/delete"
+            android:layout_marginVertical="@dimen/small_margin"
+            android:layout_marginHorizontal="@dimen/app_margin"
+            app:tint="@color/red"
+            app:layout_constraintTop_toBottomOf="@+id/aptitude_tag"
+            app:layout_constraintEnd_toStartOf="@+id/aptitude_type_edit"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <ImageView
+            android:id="@+id/aptitude_type_edit"
+            android:layout_width="@dimen/button_mini"
+            android:layout_height="@dimen/button_mini"
+            android:src="@drawable/edit"
+            android:layout_marginVertical="@dimen/small_margin"
+            android:layout_marginHorizontal="@dimen/app_margin"
+            app:tint="@color/color_txt"
+            app:layout_constraintTop_toBottomOf="@+id/aptitude_tag"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <com.google.android.material.divider.MaterialDivider
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

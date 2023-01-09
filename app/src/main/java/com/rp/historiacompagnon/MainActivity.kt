@@ -28,7 +28,6 @@ import com.rp.historiacompagnon.viewModel.MainViewModel
 class MainActivity : AppCompatActivity() {
     private val NUM_PAGES = 6
     private lateinit var mPager: ViewPager2
-    private var sharedPrefCurrentCharacter: String? = ""
     // TODO check si besoin toutes permissions dans manifest
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -41,11 +40,6 @@ class MainActivity : AppCompatActivity() {
             finish()
             return
         }
-
-        sharedPrefCurrentCharacter = getSharedPreferences(
-            Preferences.PREF_CURRENT_CHARACTER,
-            Preferences.PRIVATE_MODE
-        ).getString(Preferences.PREF_CURRENT_CHARACTER, "")
 
         initData()
         initNavigationView()
@@ -112,6 +106,12 @@ class MainActivity : AppCompatActivity() {
                     for (c in dataSnapshot.children) {
                         if (null != c.key) {
                             val character = c.getValue(Character::class.java)!!
+
+                            val sharedPrefCurrentCharacter = getSharedPreferences(
+                                Preferences.PREF_CURRENT_CHARACTER,
+                                Preferences.PRIVATE_MODE
+                            ).getString(Preferences.PREF_CURRENT_CHARACTER, "")
+
                             if (sharedPrefCurrentCharacter!!.isNotBlank()
                                 && character.key == sharedPrefCurrentCharacter) {
                                 viewModel._currentCharacter.value = character
@@ -136,7 +136,6 @@ class MainActivity : AppCompatActivity() {
         }
 
         topAppBar.setOnMenuItemClickListener { menuItem ->
-            Log.i("setOnMenuItemClick:", menuItem.toString())
             when (menuItem.itemId) {
                 R.id.navigation_team -> {
                     TeamDialogFragment.newInstance(getString(R.string.app_name))

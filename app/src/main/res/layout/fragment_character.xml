@@ -1,33 +1,408 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:background="@color/dark_background">
 
-    <TextView
-        android:id="@+id/character_full_name"
-        android:layout_width="wrap_content"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Character"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
-    <TextView
-        android:id="@+id/character_species"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Character"
-        app:layout_constraintTop_toBottomOf="@+id/character_full_name"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
-    <TextView
-        android:id="@+id/character_age"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Character"
-        app:layout_constraintTop_toBottomOf="@+id/character_species"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        android:paddingBottom="@dimen/app_margin">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+        <TextView
+            android:id="@+id/character_full_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/app_margin"
+            android:background="@color/colorPrimaryDark"
+            android:elevation="2dp"
+            android:paddingHorizontal="@dimen/small_margin"
+            android:paddingVertical="@dimen/txt_margin"
+            android:text="Cunégonde Lamarque"
+            android:textAlignment="center"
+            android:textColor="@color/color_cat"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/character_base_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/app_margin"
+            android:layout_marginTop="@dimen/double_app_margin"
+            android:background="@color/dark_panel"
+            android:elevation="1dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/app_margin"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/character_familia"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/txt_margin"
+                    android:text="Familia - espèce"
+                    android:textColor="@color/color_cat"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <ImageView
+                    android:id="@+id/character_picture"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="@dimen/txt_margin"
+                    android:background="@color/light_panel"
+                    android:src="@drawable/image"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/character_familia" />
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="@dimen/app_margin"
+                    app:layout_constraintBottom_toBottomOf="@+id/character_picture"
+                    app:layout_constraintStart_toEndOf="@+id/character_picture"
+                    app:layout_constraintTop_toTopOf="@+id/character_picture">
+
+                    <TextView
+                        android:id="@+id/character_measures"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="@dimen/txt_margin"
+                        android:text="20 ans - 1m56 - 54kg"
+                        android:textColor="@color/color_txt"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/character_instinct_familia"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="@dimen/txt_margin"
+                        android:text="Nocturne (prédateur)"
+                        android:textColor="@color/color_txt"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/character_measures" />
+
+                    <TextView
+                        android:id="@+id/character_instinct_species"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="@dimen/txt_margin"
+                        android:text="Méfiant"
+                        android:textColor="@color/color_txt"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/character_instinct_familia" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <ImageView
+                android:id="@+id/character_base_edit"
+                android:layout_width="@dimen/icon_edit_size"
+                android:layout_height="@dimen/icon_edit_size"
+                android:layout_margin="@dimen/txt_margin"
+                android:padding="@dimen/little_space"
+                android:src="@drawable/edit"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:tint="@color/colorPrimary" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <TextView
+            android:id="@+id/character_career"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/app_margin"
+            android:background="@color/colorPrimaryDark"
+            android:elevation="2dp"
+            android:paddingHorizontal="@dimen/small_margin"
+            android:paddingVertical="@dimen/txt_margin"
+            android:text="Artisan"
+            android:textAlignment="center"
+            android:textColor="@color/color_cat"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/character_base_layout" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/character_career_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/app_margin"
+            android:layout_marginTop="@dimen/double_app_margin"
+            android:background="@color/dark_panel"
+            android:elevation="1dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/character_base_layout">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/character_career_layout_txt"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/app_margin"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/character_career_rank"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/txt_margin"
+                    android:text="Rang 1"
+                    android:textColor="@color/color_cat"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/character_career_description"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/small_margin"
+                    android:text="Description blaaaaaaaaaaaaaaaaa\naaaaaaaaaaaaaaa\naaaabbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+                    android:textColor="@color/color_txt"
+                    app:layout_constraintTop_toBottomOf="@+id/character_career_rank" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <ImageView
+                android:id="@+id/character_career_edit"
+                android:layout_width="@dimen/icon_edit_size"
+                android:layout_height="@dimen/icon_edit_size"
+                android:layout_margin="@dimen/txt_margin"
+                android:padding="@dimen/little_space"
+                android:src="@drawable/edit"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/character_career_layout_txt"
+                app:tint="@color/colorPrimary" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <TextView
+            android:id="@+id/character_destiny"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/app_margin"
+            android:background="@color/colorPrimaryDark"
+            android:elevation="2dp"
+            android:paddingHorizontal="@dimen/small_margin"
+            android:paddingVertical="@dimen/txt_margin"
+            android:text="Fatalité"
+            android:textAlignment="center"
+            android:textColor="@color/color_cat"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/character_career_layout" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/character_destiny_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/app_margin"
+            android:layout_marginTop="@dimen/double_app_margin"
+            android:background="@color/dark_panel"
+            android:elevation="1dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/character_career_layout">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/character_destiny_layout_txt"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/app_margin"
+                android:layout_marginHorizontal="@dimen/txt_margin"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/character_destiny_value_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/small_margin"
+                    android:text="Valeur"
+                    android:textStyle="bold"
+                    android:textColor="@color/color_cat"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/character_destiny_value_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Promis à la grandeur. Moins motié de points de vie peut dépenser inspiration pour désavantage attaque porté contre moi."
+                    android:textColor="@color/color_txt"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/character_destiny_value_title" />
+
+                <TextView
+                    android:id="@+id/character_destiny_ideal_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Idéal"
+                    android:textStyle="bold"
+                    android:layout_marginVertical="@dimen/small_margin"
+                    android:textColor="@color/color_cat"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/character_destiny_value_txt" />
+
+                <TextView
+                    android:id="@+id/character_destiny_ideal_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Blaaaaaa\naaa\naaaaaaa"
+                    android:textColor="@color/color_txt"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/character_destiny_ideal_title" />
+
+                <TextView
+                    android:id="@+id/character_destiny_link_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Lien"
+                    android:textStyle="bold"
+                    android:layout_marginVertical="@dimen/small_margin"
+                    android:textColor="@color/color_cat"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/character_destiny_ideal_txt" />
+
+                <TextView
+                    android:id="@+id/character_destiny_link_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Blaaaaaa\naaa\naaaaaaa"
+                    android:textColor="@color/color_txt"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/character_destiny_link_title" />
+
+                <TextView
+                    android:id="@+id/character_destiny_defect_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Défaut"
+                    android:textStyle="bold"
+                    android:layout_marginVertical="@dimen/small_margin"
+                    android:textColor="@color/color_cat"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/character_destiny_link_txt" />
+
+                <TextView
+                    android:id="@+id/character_destiny_defect_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Blaaaaaa\naaa\naaaaaaa"
+                    android:textColor="@color/color_txt"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/character_destiny_defect_title" />
+
+                <TextView
+                    android:id="@+id/character_destiny_trait_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Trait de caractère"
+                    android:textStyle="bold"
+                    android:layout_marginVertical="@dimen/small_margin"
+                    android:textColor="@color/color_cat"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/character_destiny_defect_txt" />
+
+                <TextView
+                    android:id="@+id/character_destiny_trait_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Blaaaaaa\naaa\naaaaaaa"
+                    android:textColor="@color/color_txt"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/character_destiny_trait_title" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <ImageView
+                android:id="@+id/character_destiny_edit"
+                android:layout_width="@dimen/icon_edit_size"
+                android:layout_height="@dimen/icon_edit_size"
+                android:layout_margin="@dimen/txt_margin"
+                android:padding="@dimen/little_space"
+                android:src="@drawable/edit"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/character_destiny_layout_txt"
+                app:tint="@color/colorPrimary" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        <TextView
+            android:id="@+id/character_description"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/app_margin"
+            android:background="@color/colorPrimaryDark"
+            android:elevation="2dp"
+            android:paddingHorizontal="@dimen/small_margin"
+            android:paddingVertical="@dimen/txt_margin"
+            android:text="@string/description"
+            android:textAlignment="center"
+            android:textColor="@color/color_cat"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/character_destiny_layout" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/character_description_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/app_margin"
+            android:layout_marginTop="@dimen/double_app_margin"
+            android:background="@color/dark_panel"
+            android:elevation="1dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/character_destiny_layout">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/character_description_layout_txt"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="@dimen/app_margin"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    android:id="@+id/character_description_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ballaaaaaaa\naaaa\naaaa"
+                    android:textColor="@color/color_txt"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <ImageView
+                android:id="@+id/character_description_edit"
+                android:layout_width="@dimen/icon_edit_size"
+                android:layout_height="@dimen/icon_edit_size"
+                android:layout_margin="@dimen/txt_margin"
+                android:padding="@dimen/little_space"
+                android:src="@drawable/edit"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/character_description_layout_txt"
+                app:tint="@color/colorPrimary" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>
