@@ -27,10 +27,10 @@ class AuthActivity : FragmentActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_auth)
 
-        resultLauncher.launch(buildSignInIntent(null))
+        resultLauncher.launch(buildSignInIntent())
     }
 
-    private fun buildSignInIntent(link: String?): Intent {
+    private fun buildSignInIntent(): Intent {
         val builder = AuthUI.getInstance().createSignInIntentBuilder()
             .setTheme(com.firebase.ui.auth.R.style.FirebaseUI)
             .setLogo(R.mipmap.ic_launcher)

@@ -146,7 +146,7 @@ class MainActivity : AppCompatActivity() {
                     MaterialAlertDialogBuilder(this)
                         .setTitle(resources.getString(R.string.credit))
                         .setMessage(resources.getString(R.string.credit_msg))
-                        .setPositiveButton(resources.getString(R.string.ok)) { dialog, which ->
+                        .setPositiveButton(resources.getString(R.string.ok)) { dialog, _ ->
                             dialog.dismiss()
                         }
                         .show()
@@ -262,7 +262,7 @@ class MainActivity : AppCompatActivity() {
 
         @SuppressLint("RestrictedApi")
         @JvmStatic
-        open fun createIntent(context: Context, response: IdpResponse?): Intent? {
+        fun createIntent(context: Context, response: IdpResponse?): Intent? {
             return Intent().setClass(context, MainActivity::class.java)
                 .putExtra(ExtraConstants.IDP_RESPONSE, response)
         }

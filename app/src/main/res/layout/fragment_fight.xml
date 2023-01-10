@@ -10,7 +10,66 @@
         android:layout_height="wrap_content"
         android:paddingBottom="@dimen/app_margin">
 
-        
+        <com.rp.historiacompagnon.component.PvDiceComponent
+            android:id="@+id/fight_pv"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/fight_dice"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <com.rp.historiacompagnon.component.PvDiceComponent
+            android:id="@+id/fight_dice"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toEndOf="@+id/fight_pv"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <com.rp.historiacompagnon.component.IndicComponent
+            android:id="@+id/fight_initiative"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/small_margin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/fight_ca"
+            app:layout_constraintTop_toBottomOf="@+id/fight_pv"/>
+
+        <com.rp.historiacompagnon.component.IndicComponent
+            android:id="@+id/fight_ca"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/small_margin"
+            app:layout_constraintStart_toEndOf="@+id/fight_initiative"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fight_pv"/>
+
+        <com.rp.historiacompagnon.component.IndicComponent
+            android:id="@+id/fight_inspiration_points"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/txt_margin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/fight_glory_points"
+            app:layout_constraintTop_toBottomOf="@+id/fight_initiative"/>
+
+        <com.rp.historiacompagnon.component.IndicComponent
+            android:id="@+id/fight_glory_points"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/txt_margin"
+            app:layout_constraintStart_toEndOf="@+id/fight_inspiration_points"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fight_initiative"/>
+
+        <com.rp.historiacompagnon.component.IndicComponent
+            android:id="@+id/fight_speed"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/txt_margin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fight_inspiration_points"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

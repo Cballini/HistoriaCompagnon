@@ -1,0 +1,432 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/dark_background">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="@dimen/app_margin">
+
+        <ImageView
+            android:id="@+id/skill_edit_close"
+            android:layout_width="@dimen/icon_edit_size"
+            android:layout_height="@dimen/icon_edit_size"
+            android:src="@drawable/close"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/color_cat" />
+
+        <TextView
+            android:id="@+id/skill_edit_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/abilities_skills"
+            android:textColor="@color/color_cat"
+            android:textSize="@dimen/title_txt"
+            app:layout_constraintBottom_toBottomOf="@+id/skill_edit_close"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/skill_edit_close" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/skill_edit_main_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/app_margin"
+            android:background="@color/dark_panel"
+            android:padding="@dimen/txt_margin"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/skill_edit_title">
+
+            <TextView
+                android:id="@+id/skill_edit_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/abilities_skill_txt"
+                android:textColor="@color/color_txt"
+                android:layout_margin="@dimen/app_margin"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/skill_layout1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/skill_edit_txt"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/skill_layout2">
+
+                <LinearLayout
+                    android:id="@+id/skill_acrobatics_layout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
+                    <CheckBox
+                        android:id="@+id/skill_acrobatics_checkbox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/skill_acrobatics_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Acrobatie"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/skill_arcana_layout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/skill_acrobatics_layout"
+                    app:layout_constraintStart_toStartOf="parent">
+                    <CheckBox
+                        android:id="@+id/skill_arcana_checkbox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/skill_arcana_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Arcane"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/skill_athletics_layout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/skill_arcana_layout"
+                    app:layout_constraintStart_toStartOf="parent">
+                    <CheckBox
+                        android:id="@+id/skill_athletics_checkbox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/skill_athletics_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Athlétisme"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/skill_discretion_layout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/skill_athletics_layout"
+                    app:layout_constraintStart_toStartOf="parent">
+                    <CheckBox
+                        android:id="@+id/skill_discretion_checkbox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/skill_discretion_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Discrétion"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/skill_dressage_layout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/skill_discretion_layout"
+                    app:layout_constraintStart_toStartOf="parent">
+                    <CheckBox
+                        android:id="@+id/skill_dressage_checkbox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/skill_dressage_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Dressage"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/skill_sneaking_layout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/skill_dressage_layout"
+                    app:layout_constraintStart_toStartOf="parent">
+                    <CheckBox
+                        android:id="@+id/skill_sneaking_checkbox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/skill_sneaking_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Escamotage"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/skill_history_layout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/skill_sneaking_layout"
+                    app:layout_constraintStart_toStartOf="parent">
+                    <CheckBox
+                        android:id="@+id/skill_history_checkbox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/skill_history_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Histoire"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/skill_intimidation_layout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/skill_history_layout"
+                    app:layout_constraintStart_toStartOf="parent">
+                    <CheckBox
+                        android:id="@+id/skill_intimidation_checkbox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/skill_intimidation_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Intimidation"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/skill_investigation_layout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/skill_intimidation_layout"
+                    app:layout_constraintStart_toStartOf="parent">
+                    <CheckBox
+                        android:id="@+id/skill_investigation_checkbox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/skill_investigation_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Investigation"/>
+                </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/skill_layout2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintTop_toBottomOf="@+id/skill_edit_txt"
+                app:layout_constraintStart_toEndOf="@+id/skill_layout1"
+                app:layout_constraintEnd_toEndOf="parent">
+
+                <LinearLayout
+                    android:id="@+id/skill_medecine_layout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent">
+                    <CheckBox
+                        android:id="@+id/skill_medecine_checkbox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/skill_medecine_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Médecine"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/skill_nature_layout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/skill_medecine_layout"
+                    app:layout_constraintStart_toStartOf="parent">
+                    <CheckBox
+                        android:id="@+id/skill_nature_checkbox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/skill_nature_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nature"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/skill_perception_layout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/skill_nature_layout"
+                    app:layout_constraintStart_toStartOf="parent">
+                    <CheckBox
+                        android:id="@+id/skill_perception_checkbox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/skill_perception_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Perception"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/skill_insight_layout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/skill_perception_layout"
+                    app:layout_constraintStart_toStartOf="parent">
+                    <CheckBox
+                        android:id="@+id/skill_insight_checkbox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/skill_insight_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Perspicacité"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/skill_persuasion_layout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/skill_insight_layout"
+                    app:layout_constraintStart_toStartOf="parent">
+                    <CheckBox
+                        android:id="@+id/skill_persuasion_checkbox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/skill_persuasion_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Persuasion"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/skill_religion_layout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/skill_persuasion_layout"
+                    app:layout_constraintStart_toStartOf="parent">
+                    <CheckBox
+                        android:id="@+id/skill_religion_checkbox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/skill_religion_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Religion"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/skill_representation_layout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/skill_religion_layout"
+                    app:layout_constraintStart_toStartOf="parent">
+                    <CheckBox
+                        android:id="@+id/skill_representation_checkbox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/skill_representation_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Représentation"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/skill_trickery_layout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/skill_representation_layout"
+                    app:layout_constraintStart_toStartOf="parent">
+                    <CheckBox
+                        android:id="@+id/skill_trickery_checkbox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/skill_trickery_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Supercherie"/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/skill_survival_layout"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintTop_toBottomOf="@+id/skill_trickery_layout"
+                    app:layout_constraintStart_toStartOf="parent">
+                    <CheckBox
+                        android:id="@+id/skill_survival_checkbox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+
+                    <TextView
+                        android:id="@+id/skill_survival_txt"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Investigation"/>
+                </LinearLayout>
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <Button
+            android:id="@+id/skill_edit_save_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/app_margin"
+            android:padding="@dimen/txt_margin"
+            android:text="@string/validate"
+            android:textColor="@color/dark_background"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/skill_edit_main_layout" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</ScrollView>

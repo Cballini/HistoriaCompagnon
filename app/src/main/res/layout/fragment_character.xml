@@ -119,6 +119,41 @@
                 app:tint="@color/colorPrimary" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/character_job_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/character_base_layout">
+
+            <com.rp.historiacompagnon.component.JobComponent
+                android:id="@+id/character_job1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <Button
+                android:id="@+id/character_job_add"
+                android:layout_width="wrap_content"
+                android:layout_height="40dp"
+                android:layout_marginTop="@dimen/small_margin"
+                android:text="@string/character_add_job"
+                app:backgroundTint="@color/colorPrimaryDark"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/character_job1"/>
+
+            <com.rp.historiacompagnon.component.JobComponent
+                android:id="@+id/character_job2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/character_job_add" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
         <TextView
             android:id="@+id/character_career"
@@ -134,7 +169,7 @@
             android:textColor="@color/color_cat"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/character_base_layout" />
+            app:layout_constraintTop_toBottomOf="@+id/character_job_layout" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/character_career_layout"
@@ -145,7 +180,7 @@
             android:background="@color/dark_panel"
             android:elevation="1dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/character_base_layout">
+            app:layout_constraintTop_toBottomOf="@+id/character_job_layout">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/character_career_layout_txt"

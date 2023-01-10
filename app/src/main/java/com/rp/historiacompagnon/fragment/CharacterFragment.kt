@@ -2,6 +2,7 @@ package com.rp.historiacompagnon.fragment
 
 import android.Manifest
 import android.app.Activity
+import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -10,6 +11,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
@@ -24,7 +26,9 @@ import com.google.firebase.storage.ktx.storageMetadata
 import com.rp.historiacompagnon.MainActivity
 import com.rp.historiacompagnon.R
 import com.rp.historiacompagnon.Services
+import com.rp.historiacompagnon.component.JobComponent
 import com.rp.historiacompagnon.entity.Character
+import com.rp.historiacompagnon.entity.Job
 
 
 class CharacterFragment : Fragment() {
@@ -49,6 +53,24 @@ class CharacterFragment : Fragment() {
 
             // Base
             fillBasePanel(view, it)
+            
+            // Job
+            // Infos 1er job
+            if (character.jobs.size >= 1) {
+                fillJob(view, R.id.character_job1, 0)
+            } else {
+                view.findViewById<JobComponent>(R.id.character_job1).visibility = View.GONE
+            }
+
+            // Infos 2nd job
+            if (character.jobs.size == 2) {
+                fillJob(view, R.id.character_job2, 1)
+                // Cacher ajout si déjà 2 jobs
+                view.findViewById<Button>(R.id.character_job_add).visibility = View.GONE
+            } else {
+                view.findViewById<Button>(R.id.character_job_add).visibility = View.VISIBLE
+                view.findViewById<JobComponent>(R.id.character_job2).visibility = View.GONE
+            }
 
             // Career
             fillCareerPanel(view, it)
@@ -71,7 +93,118 @@ class CharacterFragment : Fragment() {
 
         openEditDescription(view)
 
+        view.findViewById<Button>(R.id.character_job_add).setOnClickListener {
+            character.jobs.add(Job())
+            MainActivity.viewModel.editCharacter(character)
+        }
+
         return view
+    }
+
+    /**
+     * Gestion encart métier
+     */
+    private fun fillJob(view: View, componentId: Int, jobPos: Int) {
+        val job = character.jobs[jobPos]
+        val component = view.findViewById<JobComponent>(componentId)
+
+        component.visibility = View.VISIBLE
+        component.jobName.text = job.name
+        component.jobSpecialityLvl.text =
+            getString(R.string.job_specialty_lvl, job.specialty, job.level)
+        component.jobModifier.text = getString(R.string.job_plus_something, job.modifier)
+        component.jobLifeDiceLvl.text = job.lifeDiceByLvl
+        component.jobArmors.text = job.typeArmor
+        component.jobWeapons.text = job.typeWeapon
+        component.jobThrowSave.text = job.save
+
+        component.jobEdit.setOnClickListener {
+            openJobDialog(jobPos)
+        }
+
+        if (jobPos == 1) { // 2ieme job
+            component.jobDelete.visibility = View.VISIBLE
+            component.jobDelete.setOnClickListener {
+                val builder = AlertDialog.Builder(context)
+                with(builder)
+                {
+                    setTitle(getString(R.string.delete_job))
+                    setMessage(
+                        getString(
+                            R.string.delete_job_txt,
+                            character.jobs[jobPos].name
+                        )
+                    )
+                    setNegativeButton(getString(R.string.cancel)) { dialog, which -> dialog.cancel() }
+                    setPositiveButton(getString(R.string.yes)) { dialog, which ->
+                        character.jobs.removeAt(jobPos)
+                        MainActivity.viewModel.editCharacter(character)
+                        dialog.cancel()
+                    }
+                    show()
+                }
+            }
+        }
+    }
+
+    /**
+     * Ouvre la dialog pour le métier
+     */
+    private fun openJobDialog(jobPos: Int) {
+        val joDialog = Dialog(requireContext(), android.R.style.Theme_NoTitleBar)
+
+        joDialog.setContentView(R.layout.dialog_job)
+        joDialog.show()
+        joDialog.findViewById<ImageView>(R.id.job_edit_close)
+            .setOnClickListener { joDialog.dismiss() }
+
+        fillJobDialog(joDialog, jobPos)
+
+        joDialog.findViewById<Button>(R.id.job_edit_save_button).setOnClickListener {
+            character.jobs[jobPos].name =
+                joDialog.findViewById<EditText>(R.id.job_edit_name_value).text.toString()
+            character.jobs[jobPos].specialty =
+                joDialog.findViewById<EditText>(R.id.job_edit_specialty_value).text.toString()
+            character.jobs[jobPos].level =
+                joDialog.findViewById<EditText>(R.id.job_edit_level_value).text.toString()
+                    .toInt()
+            character.jobs[jobPos].modifier =
+                joDialog.findViewById<EditText>(R.id.job_edit_modifier_value).text.toString()
+                    .toInt()
+            character.jobs[jobPos].lifeDiceByLvl =
+                joDialog.findViewById<EditText>(R.id.job_edit_dice_lvl_value).text.toString()
+            character.jobs[jobPos].typeArmor =
+                joDialog.findViewById<EditText>(R.id.job_edit_armors_value).text.toString()
+            character.jobs[jobPos].typeWeapon =
+                joDialog.findViewById<EditText>(R.id.job_edit_weapons_value).text.toString()
+            character.jobs[jobPos].save =
+                joDialog.findViewById<EditText>(R.id.job_edit_throw_save_value).text.toString()
+
+            MainActivity.viewModel.editCharacter(character)
+            joDialog.dismiss()
+        }
+    }
+
+    /**
+     * Rempli la dialog avec les infos du job
+     */
+    private fun fillJobDialog(joDialog: Dialog, jobPos: Int) {
+        joDialog.findViewById<EditText>(R.id.job_edit_name_value)
+            .setText(character.jobs[jobPos].name)
+        joDialog.findViewById<EditText>(R.id.job_edit_specialty_value)
+            .setText(character.jobs[jobPos].specialty)
+        joDialog.findViewById<EditText>(R.id.job_edit_level_value)
+            .setText(character.jobs[jobPos].level.toString())
+        joDialog.findViewById<EditText>(R.id.job_edit_modifier_value)
+            .setText(character.jobs[jobPos].modifier.toString())
+        joDialog.findViewById<EditText>(R.id.job_edit_dice_lvl_value)
+            .setText(character.jobs[jobPos].lifeDiceByLvl)
+        joDialog.findViewById<EditText>(R.id.job_edit_armors_value)
+            .setText(character.jobs[jobPos].typeArmor)
+        joDialog.findViewById<EditText>(R.id.job_edit_weapons_value)
+            .setText(character.jobs[jobPos].typeWeapon)
+        joDialog.findViewById<EditText>(R.id.job_edit_throw_save_value)
+            .setText(character.jobs[jobPos].save)
     }
 
     private fun openEditDescription(view: View) {

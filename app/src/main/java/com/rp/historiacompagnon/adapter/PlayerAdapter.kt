@@ -15,7 +15,7 @@ class PlayerAdapter (var mDataset: MutableList<Character>, callback : RecyclerVi
     private var characterKey = characterKey
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val item = LayoutInflater.from(parent!!.context)
+        val item = LayoutInflater.from(parent.context)
             .inflate(R.layout.component_player, parent, false) as LinearLayout
 
         return ViewHolder(item)

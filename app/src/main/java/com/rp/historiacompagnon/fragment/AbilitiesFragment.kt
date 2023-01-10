@@ -3,7 +3,6 @@ package com.rp.historiacompagnon.fragment
 import android.app.AlertDialog
 import android.app.Dialog
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -19,18 +18,26 @@ import com.rp.historiacompagnon.Preferences.PRIVATE_MODE
 import com.rp.historiacompagnon.R
 import com.rp.historiacompagnon.Services
 import com.rp.historiacompagnon.adapter.AptitudeAdapter
-import com.rp.historiacompagnon.component.JobComponent
 import com.rp.historiacompagnon.entity.Aptitude
 import com.rp.historiacompagnon.entity.Character
-import com.rp.historiacompagnon.entity.Job
+import com.rp.historiacompagnon.entity.Characteristic
+import com.rp.historiacompagnon.entity.Skill
 import com.rp.historiacompagnon.enum.AptitudeTagEnum
 import com.rp.historiacompagnon.enum.AptitudeTypeEnum
+import com.rp.historiacompagnon.enum.CharacteristicEnum
+import com.rp.historiacompagnon.enum.SkillNameEnum
 import com.rp.historiacompagnon.util.RecyclerViewClickListener
 
 class AbilitiesFragment : Fragment(), RecyclerViewClickListener {
     private var character = Character()
     private var aptitudes = ArrayList<Aptitude>()
     private var setupDone = false
+    private var strengthVal: Int? = 0
+    private var dexVal: Int? = 0
+    private var constVal: Int? = 0
+    private var charismaVal: Int? = 0
+    private var wisdomVal: Int? = 0
+    private var intVal: Int? = 0
     private lateinit var recyclerViewAptitudes: RecyclerView
     private lateinit var viewAdapterAptitudes: AptitudeAdapter
     private lateinit var viewManagerAptitudes: RecyclerView.LayoutManager
@@ -45,13 +52,16 @@ class AbilitiesFragment : Fragment(), RecyclerViewClickListener {
         setupAdapter(view)
         setupSortByType(view)
 
-        view.findViewById<Button>(R.id.abilities_job_add).setOnClickListener {
-            character.jobs.add(Job())
-            MainActivity.viewModel.editCharacter(character)
-        }
-
         view.findViewById<Button>(R.id.abilities_aptitude_add).setOnClickListener {
             openAptitudeDialog(-1)
+        }
+
+        view.findViewById<ImageView>(R.id.abilities_characteristic_edit).setOnClickListener {
+            openCharacteristicDialog()
+        }
+
+        view.findViewById<ImageView>(R.id.abilities_skill_edit).setOnClickListener {
+            openSkillDialog()
         }
 
         MainActivity.viewModel.currentCharacter.observe(viewLifecycleOwner, Observer {
@@ -63,28 +73,348 @@ class AbilitiesFragment : Fragment(), RecyclerViewClickListener {
                 setupDone = true
             }
 
-            // Infos 1er job
-            if (character.jobs.size >= 1) {
-                fillJob(view, R.id.abilities_job1, 0)
-            } else {
-                view.findViewById<JobComponent>(R.id.abilities_job1).visibility = View.GONE
-            }
-
-            // Infos 2nd job
-            if (character.jobs.size == 2) {
-                fillJob(view, R.id.abilities_job2, 1)
-                // Cacher ajout si déjà 2 jobs
-                view.findViewById<Button>(R.id.abilities_job_add).visibility = View.GONE
-            } else {
-                view.findViewById<Button>(R.id.abilities_job_add).visibility = View.VISIBLE
-                view.findViewById<JobComponent>(R.id.abilities_job2).visibility = View.GONE
-            }
-
             sortAptitudeByType()
+
+            setCharacteristics(view)
+            setSkillsModifiers(view)
         })
 
-
         return view
+    }
+
+    private fun openSkillDialog() {
+        val skillDialog = Dialog(requireContext(), android.R.style.Theme_NoTitleBar)
+
+        skillDialog.setContentView(R.layout.dialog_abilities_skills)
+        skillDialog.show()
+        skillDialog.findViewById<ImageView>(R.id.skill_edit_close)
+            .setOnClickListener { skillDialog.dismiss() }
+
+        fillSkillDialog(skillDialog)
+
+        skillDialog.findViewById<Button>(R.id.skill_edit_save_button).setOnClickListener {
+
+            setSkillCharacter(SkillNameEnum.ACROBATICS, R.id.skill_acrobatics_checkbox, skillDialog)
+            setSkillCharacter(SkillNameEnum.ARCANA, R.id.skill_arcana_checkbox, skillDialog)
+            setSkillCharacter(SkillNameEnum.ATHLETICS, R.id.skill_athletics_checkbox, skillDialog)
+            setSkillCharacter(SkillNameEnum.DISCRETION, R.id.skill_discretion_checkbox, skillDialog)
+            setSkillCharacter(SkillNameEnum.DRESSAGE, R.id.skill_dressage_checkbox, skillDialog)
+            setSkillCharacter(SkillNameEnum.SNEAKING, R.id.skill_sneaking_checkbox, skillDialog)
+            setSkillCharacter(SkillNameEnum.HISTORY, R.id.skill_history_checkbox, skillDialog)
+            setSkillCharacter(SkillNameEnum.INTIMIDATION, R.id.skill_intimidation_checkbox, skillDialog)
+            setSkillCharacter(SkillNameEnum.INVESTIGATION, R.id.skill_investigation_checkbox, skillDialog)
+            setSkillCharacter(SkillNameEnum.MEDICINE, R.id.skill_medecine_checkbox, skillDialog)
+            setSkillCharacter(SkillNameEnum.NATURE, R.id.skill_nature_checkbox, skillDialog)
+            setSkillCharacter(SkillNameEnum.PERCEPTION, R.id.skill_perception_checkbox, skillDialog)
+            setSkillCharacter(SkillNameEnum.INSIGHT, R.id.skill_insight_checkbox, skillDialog)
+            setSkillCharacter(SkillNameEnum.PERSUASION, R.id.skill_persuasion_checkbox, skillDialog)
+            setSkillCharacter(SkillNameEnum.RELIGION, R.id.skill_religion_checkbox, skillDialog)
+            setSkillCharacter(SkillNameEnum.REPRESENTATION, R.id.skill_representation_checkbox, skillDialog)
+            setSkillCharacter(SkillNameEnum.TRICKERY, R.id.skill_trickery_checkbox, skillDialog)
+            setSkillCharacter(SkillNameEnum.SURVIVAL, R.id.skill_survival_checkbox, skillDialog)
+
+            MainActivity.viewModel.editCharacter(character)
+            skillDialog.dismiss()
+        }
+    }
+
+    private fun fillSkillDialog(skillDialog: Dialog) {
+        if (null != getSkill(SkillNameEnum.ACROBATICS) && getSkill(SkillNameEnum.ACROBATICS)!!.mastery) {
+            skillDialog.findViewById<CheckBox>(R.id.skill_acrobatics_checkbox).isChecked = true
+        }
+        if (null != getSkill(SkillNameEnum.ARCANA) && getSkill(SkillNameEnum.ARCANA)!!.mastery) {
+            skillDialog.findViewById<CheckBox>(R.id.skill_arcana_checkbox).isChecked = true
+        }
+        if (null != getSkill(SkillNameEnum.ATHLETICS) && getSkill(SkillNameEnum.ATHLETICS)!!.mastery) {
+            skillDialog.findViewById<CheckBox>(R.id.skill_athletics_checkbox).isChecked = true
+        }
+        if (null != getSkill(SkillNameEnum.DISCRETION) && getSkill(SkillNameEnum.DISCRETION)!!.mastery) {
+            skillDialog.findViewById<CheckBox>(R.id.skill_discretion_checkbox).isChecked = true
+        }
+        if (null != getSkill(SkillNameEnum.DRESSAGE) && getSkill(SkillNameEnum.DRESSAGE)!!.mastery) {
+            skillDialog.findViewById<CheckBox>(R.id.skill_dressage_checkbox).isChecked = true
+        }
+        if (null != getSkill(SkillNameEnum.SNEAKING) && getSkill(SkillNameEnum.SNEAKING)!!.mastery) {
+            skillDialog.findViewById<CheckBox>(R.id.skill_sneaking_checkbox).isChecked = true
+        }
+        if (null != getSkill(SkillNameEnum.HISTORY) && getSkill(SkillNameEnum.HISTORY)!!.mastery) {
+            skillDialog.findViewById<CheckBox>(R.id.skill_history_checkbox).isChecked = true
+        }
+        if (null != getSkill(SkillNameEnum.INTIMIDATION) && getSkill(SkillNameEnum.INTIMIDATION)!!.mastery) {
+            skillDialog.findViewById<CheckBox>(R.id.skill_intimidation_checkbox).isChecked = true
+        }
+        if (null != getSkill(SkillNameEnum.INVESTIGATION) && getSkill(SkillNameEnum.INVESTIGATION)!!.mastery) {
+            skillDialog.findViewById<CheckBox>(R.id.skill_investigation_checkbox).isChecked = true
+        }
+        if (null != getSkill(SkillNameEnum.MEDICINE) && getSkill(SkillNameEnum.MEDICINE)!!.mastery) {
+            skillDialog.findViewById<CheckBox>(R.id.skill_medecine_checkbox).isChecked = true
+        }
+        if (null != getSkill(SkillNameEnum.NATURE) && getSkill(SkillNameEnum.NATURE)!!.mastery) {
+            skillDialog.findViewById<CheckBox>(R.id.skill_nature_checkbox).isChecked = true
+        }
+        if (null != getSkill(SkillNameEnum.PERCEPTION) && getSkill(SkillNameEnum.PERCEPTION)!!.mastery) {
+            skillDialog.findViewById<CheckBox>(R.id.skill_perception_checkbox).isChecked = true
+        }
+        if (null != getSkill(SkillNameEnum.INSIGHT) && getSkill(SkillNameEnum.INSIGHT)!!.mastery) {
+            skillDialog.findViewById<CheckBox>(R.id.skill_insight_checkbox).isChecked = true
+        }
+        if (null != getSkill(SkillNameEnum.PERSUASION) && getSkill(SkillNameEnum.PERSUASION)!!.mastery) {
+            skillDialog.findViewById<CheckBox>(R.id.skill_persuasion_checkbox).isChecked = true
+        }
+        if (null != getSkill(SkillNameEnum.RELIGION) && getSkill(SkillNameEnum.RELIGION)!!.mastery) {
+            skillDialog.findViewById<CheckBox>(R.id.skill_religion_checkbox).isChecked = true
+        }
+        if (null != getSkill(SkillNameEnum.REPRESENTATION) && getSkill(SkillNameEnum.REPRESENTATION)!!.mastery) {
+            skillDialog.findViewById<CheckBox>(R.id.skill_representation_checkbox).isChecked = true
+        }
+        if (null != getSkill(SkillNameEnum.TRICKERY) && getSkill(SkillNameEnum.TRICKERY)!!.mastery) {
+            skillDialog.findViewById<CheckBox>(R.id.skill_trickery_checkbox).isChecked = true
+        }
+        if (null != getSkill(SkillNameEnum.SURVIVAL) && getSkill(SkillNameEnum.SURVIVAL)!!.mastery) {
+            skillDialog.findViewById<CheckBox>(R.id.skill_survival_checkbox).isChecked = true
+        }
+    }
+
+    private fun setSkillCharacter(skill: SkillNameEnum, viewId: Int, dialog: Dialog) {
+        var characterSkill = getSkill(skill)
+        if (null == characterSkill) {
+            character.skills.add(
+                Skill(
+                    skill,
+                    dialog.findViewById<CheckBox>(viewId).isChecked
+                )
+            )
+        } else {
+            characterSkill.mastery = dialog.findViewById<CheckBox>(viewId).isChecked
+        }
+    }
+
+    private fun openCharacteristicDialog() {
+        val characDialog = Dialog(requireContext(), android.R.style.Theme_NoTitleBar)
+
+        characDialog.setContentView(R.layout.dialog_abilities_characteristics)
+        characDialog.show()
+        characDialog.findViewById<ImageView>(R.id.characteristic_edit_close)
+            .setOnClickListener { characDialog.dismiss() }
+
+        fillCharacteristicDialog(characDialog)
+
+        characDialog.findViewById<Button>(R.id.characteristic_edit_save_button).setOnClickListener {
+
+            setCharacteristicCharacter(CharacteristicEnum.STRENGTH, R.id.characteristic_edit_strength_value, characDialog)
+            setCharacteristicCharacter(CharacteristicEnum.DEXTERITY, R.id.characteristic_edit_dex_value, characDialog)
+            setCharacteristicCharacter(CharacteristicEnum.CONSTITUTION, R.id.characteristic_edit_const_value, characDialog)
+            setCharacteristicCharacter(CharacteristicEnum.CHARISMA, R.id.characteristic_edit_charisma_value, characDialog)
+            setCharacteristicCharacter(CharacteristicEnum.WISDOM, R.id.characteristic_edit_wisdom_value, characDialog)
+            setCharacteristicCharacter(CharacteristicEnum.INTELLECT, R.id.characteristic_edit_int_value, characDialog)
+
+            MainActivity.viewModel.editCharacter(character)
+            characDialog.dismiss()
+        }
+    }
+
+    private fun fillCharacteristicDialog(characDialog: Dialog) {
+        if (null != getCharacteristic(CharacteristicEnum.STRENGTH)) {
+            characDialog.findViewById<EditText>(R.id.characteristic_edit_strength_value)
+                .setText(getCharacteristic(CharacteristicEnum.STRENGTH)!!.value.toString())
+        }
+        if (null != getCharacteristic(CharacteristicEnum.DEXTERITY)) {
+            characDialog.findViewById<EditText>(R.id.characteristic_edit_dex_value)
+                .setText(getCharacteristic(CharacteristicEnum.DEXTERITY)!!.value.toString())
+        }
+        if (null != getCharacteristic(CharacteristicEnum.CONSTITUTION)) {
+            characDialog.findViewById<EditText>(R.id.characteristic_edit_const_value)
+                .setText(getCharacteristic(CharacteristicEnum.CONSTITUTION)!!.value.toString())
+        }
+        if (null != getCharacteristic(CharacteristicEnum.CHARISMA)) {
+            characDialog.findViewById<EditText>(R.id.characteristic_edit_charisma_value)
+                .setText(getCharacteristic(CharacteristicEnum.CHARISMA)!!.value.toString())
+        }
+        if (null != getCharacteristic(CharacteristicEnum.WISDOM)) {
+            characDialog.findViewById<EditText>(R.id.characteristic_edit_wisdom_value)
+                .setText(getCharacteristic(CharacteristicEnum.WISDOM)!!.value.toString())
+        }
+        if (null != getCharacteristic(CharacteristicEnum.INTELLECT)) {
+            characDialog.findViewById<EditText>(R.id.characteristic_edit_int_value)
+                .setText(getCharacteristic(CharacteristicEnum.INTELLECT)!!.value.toString())
+        }
+    }
+
+    private fun getCharacteristic(characteristic: CharacteristicEnum): Characteristic? {
+        return character.characteristics.find { c -> c.name == characteristic }
+    }
+
+    private fun setCharacteristicCharacter(characteristic: CharacteristicEnum, viewId: Int, dialog: Dialog) {
+        var characterCharac = getCharacteristic(characteristic)
+        if (null == characterCharac) {
+            character.characteristics.add(
+                Characteristic(
+                    characteristic,
+                    dialog.findViewById<EditText>(viewId).text.toString().toInt()
+                )
+            )
+        } else {
+            characterCharac.value = dialog.findViewById<EditText>(viewId).text.toString().toInt()
+        }
+    }
+
+    private fun setSkillsModifiers(view: View) {
+        // TODO calcul selon job pour maitrisés
+        getSkillModifier(view, SkillNameEnum.ACROBATICS, R.id.abilities_acrobatics_modifier, R.id.abilities_acrobatics_title)
+        getSkillModifier(view, SkillNameEnum.ARCANA, R.id.abilities_arcana_modifier, R.id.abilities_arcana_title)
+        getSkillModifier(view, SkillNameEnum.ATHLETICS, R.id.abilities_athletics_modifier, R.id.abilities_athletics_title)
+        getSkillModifier(view, SkillNameEnum.DISCRETION, R.id.abilities_discretion_modifier, R.id.abilities_discretion_title)
+        getSkillModifier(view, SkillNameEnum.DRESSAGE, R.id.abilities_dressage_modifier, R.id.abilities_dressage_title)
+        getSkillModifier(view, SkillNameEnum.SNEAKING, R.id.abilities_sneaking_modifier, R.id.abilities_sneaking_title)
+        getSkillModifier(view, SkillNameEnum.HISTORY, R.id.abilities_history_modifier, R.id.abilities_history_title)
+        getSkillModifier(view, SkillNameEnum.INTIMIDATION, R.id.abilities_intimidation_modifier, R.id.abilities_intimidation_title)
+        getSkillModifier(view, SkillNameEnum.INVESTIGATION, R.id.abilities_investigation_modifier, R.id.abilities_investigation_title)
+        getSkillModifier(view, SkillNameEnum.MEDICINE, R.id.abilities_medecine_modifier, R.id.abilities_medecine_title)
+        getSkillModifier(view, SkillNameEnum.NATURE, R.id.abilities_nature_modifier, R.id.abilities_nature_title)
+        getSkillModifier(view, SkillNameEnum.PERCEPTION, R.id.abilities_perception_modifier, R.id.abilities_perception_title)
+        getSkillModifier(view, SkillNameEnum.INSIGHT, R.id.abilities_insight_modifier, R.id.abilities_insight_title)
+        getSkillModifier(view, SkillNameEnum.PERSUASION, R.id.abilities_persuasion_modifier, R.id.abilities_persuasion_title)
+        getSkillModifier(view, SkillNameEnum.RELIGION, R.id.abilities_religion_modifier, R.id.abilities_religion_title)
+        getSkillModifier(view, SkillNameEnum.REPRESENTATION, R.id.abilities_representation_modifier, R.id.abilities_representation_title)
+        getSkillModifier(view, SkillNameEnum.TRICKERY, R.id.abilities_trickery_modifier, R.id.abilities_trickery_title)
+        getSkillModifier(view, SkillNameEnum.SURVIVAL, R.id.abilities_survival_modifier, R.id.abilities_survival_title)
+    }
+
+    private fun getSkill(typeSkill: SkillNameEnum) = character.skills.find { s -> s.name == typeSkill }
+
+    private fun getSkillModifier(view: View, typeSkill: SkillNameEnum, idViewCheckbox: Int, idViewTxt: Int) {
+        val skill = getSkill(typeSkill)
+        var modifier = ""
+        if (null != skill) {
+            if (skill.mastery) {
+                var bonusJob = 0
+                if (character.jobs.isNotEmpty()) bonusJob = character.jobs[0].modifier
+                modifier = getString(
+                    R.string.job_plus_something,
+                    getCaracteristicModifier(skill).toInt() + bonusJob
+                )
+                view.findViewById<TextView>(idViewTxt).setTextColor(resources.getColor(R.color.bonus))
+            } else {
+                modifier = getCaracteristicModifier(skill)
+                view.findViewById<TextView>(idViewTxt).setTextColor(resources.getColor(R.color.color_txt))
+            }
+        } else {
+            view.findViewById<TextView>(idViewTxt).setTextColor(resources.getColor(R.color.color_txt))
+        }
+        view.findViewById<TextView>(idViewCheckbox).text = modifier
+    }
+
+    private fun getCaracteristicModifier(acrobaticsSkill: Skill): String {
+        var modifier = ""
+        when (acrobaticsSkill.name.attribute) {
+            CharacteristicEnum.STRENGTH -> {
+                modifier = if (null != strengthVal) {
+                    CharacteristicEnum.getCharacteristicModifier(strengthVal!!)
+                } else {
+                    ""
+                }
+            }
+            CharacteristicEnum.DEXTERITY -> {
+                modifier = if (null != dexVal) {
+                    CharacteristicEnum.getCharacteristicModifier(dexVal!!)
+                } else {
+                    ""
+                }
+            }
+
+            CharacteristicEnum.CONSTITUTION -> {
+                modifier = if (null != constVal) {
+                    CharacteristicEnum.getCharacteristicModifier(constVal!!)
+                } else {
+                    ""
+                }
+            }
+            CharacteristicEnum.CHARISMA -> {
+                modifier = if (null != charismaVal) {
+                    CharacteristicEnum.getCharacteristicModifier(charismaVal!!)
+                } else {
+                    ""
+                }
+            }
+            CharacteristicEnum.WISDOM -> {
+                modifier = if (null != wisdomVal) {
+                    CharacteristicEnum.getCharacteristicModifier(wisdomVal!!)
+                } else {
+                    ""
+                }
+            }
+            CharacteristicEnum.INTELLECT -> {
+                modifier = if (null != intVal) {
+                    CharacteristicEnum.getCharacteristicModifier(intVal!!)
+                } else {
+                    ""
+                }
+            }
+        }
+        return modifier
+    }
+
+    private fun setCharacteristics(view: View) {
+        strengthVal = getCharacteristic(CharacteristicEnum.STRENGTH)?.value
+        if (null == strengthVal) {
+            view.findViewById<TextView>(R.id.abilities_strength_value).text = ""
+            view.findViewById<TextView>(R.id.abilities_strength_modifier).text = ""
+        } else {
+            view.findViewById<TextView>(R.id.abilities_strength_value).text = strengthVal.toString()
+            view.findViewById<TextView>(R.id.abilities_strength_modifier).text =
+                CharacteristicEnum.getCharacteristicModifier(strengthVal!!)
+        }
+
+
+        dexVal = getCharacteristic(CharacteristicEnum.DEXTERITY)?.value
+        if (null == dexVal) {
+            view.findViewById<TextView>(R.id.abilities_dexterity_value).text = ""
+            view.findViewById<TextView>(R.id.abilities_dexterity_modifier).text = ""
+        } else {
+            view.findViewById<TextView>(R.id.abilities_dexterity_value).text = dexVal.toString()
+            view.findViewById<TextView>(R.id.abilities_dexterity_modifier).text =
+                CharacteristicEnum.getCharacteristicModifier(dexVal!!)
+        }
+
+        constVal = getCharacteristic(CharacteristicEnum.CONSTITUTION)?.value
+        if (null == constVal) {
+            view.findViewById<TextView>(R.id.abilities_constitution_value).text = ""
+            view.findViewById<TextView>(R.id.abilities_constitution_modifier).text = ""
+        } else {
+            view.findViewById<TextView>(R.id.abilities_constitution_value).text = constVal.toString()
+            view.findViewById<TextView>(R.id.abilities_constitution_modifier).text =
+                CharacteristicEnum.getCharacteristicModifier(constVal!!)
+        }
+
+        charismaVal = getCharacteristic(CharacteristicEnum.CHARISMA)?.value
+        if (null == charismaVal) {
+            view.findViewById<TextView>(R.id.abilities_charisma_value).text = ""
+            view.findViewById<TextView>(R.id.abilities_charisma_modifier).text = ""
+        } else {
+            view.findViewById<TextView>(R.id.abilities_charisma_value).text = charismaVal.toString()
+            view.findViewById<TextView>(R.id.abilities_charisma_modifier).text =
+                CharacteristicEnum.getCharacteristicModifier(charismaVal!!)
+        }
+
+        wisdomVal = getCharacteristic(CharacteristicEnum.WISDOM)?.value
+        if (null == wisdomVal) {
+            view.findViewById<TextView>(R.id.abilities_wisdom_value).text = ""
+            view.findViewById<TextView>(R.id.abilities_wisdom_modifier).text = ""
+        } else {
+            view.findViewById<TextView>(R.id.abilities_wisdom_value).text = wisdomVal.toString()
+            view.findViewById<TextView>(R.id.abilities_wisdom_modifier).text =
+                CharacteristicEnum.getCharacteristicModifier(wisdomVal!!)
+        }
+
+        intVal = getCharacteristic(CharacteristicEnum.INTELLECT)?.value
+        if (null == intVal) {
+            view.findViewById<TextView>(R.id.abilities_intellect_value).text = ""
+            view.findViewById<TextView>(R.id.abilities_intellect_modifier).text = ""
+        } else {
+            view.findViewById<TextView>(R.id.abilities_intellect_value).text = intVal.toString()
+            view.findViewById<TextView>(R.id.abilities_intellect_modifier).text =
+                CharacteristicEnum.getCharacteristicModifier(intVal!!)
+        }
     }
 
     private fun openAptitudeDialog(position: Int): Dialog {
@@ -201,8 +531,8 @@ class AbilitiesFragment : Fragment(), RecyclerViewClickListener {
                             character.aptitudes[position].name
                         )
                     )
-                    setNegativeButton(getString(R.string.cancel)) { dialog, which -> dialog.cancel() }
-                    setPositiveButton(getString(R.string.yes)) { dialog, which ->
+                    setNegativeButton(getString(R.string.cancel)) { dialog, _ -> dialog.cancel() }
+                    setPositiveButton(getString(R.string.yes)) { dialog, _ ->
                         character.aptitudes.removeAt(getPositionCharacterAptitude(position))
                         MainActivity.viewModel.editCharacter(character)
                         dialog.cancel()
@@ -211,11 +541,11 @@ class AbilitiesFragment : Fragment(), RecyclerViewClickListener {
                 }
             }
             R.id.aptitude_add_used -> {
-                character.aptitudes[getPositionCharacterAptitude(position)].used ++
+                character.aptitudes[getPositionCharacterAptitude(position)].used++
                 MainActivity.viewModel.editCharacter(character)
             }
             R.id.aptitude_minus_used -> {
-                character.aptitudes[getPositionCharacterAptitude(position)].used --
+                character.aptitudes[getPositionCharacterAptitude(position)].used--
                 MainActivity.viewModel.editCharacter(character)
             }
             R.id.aptitude_reset_used -> {
@@ -287,7 +617,7 @@ class AbilitiesFragment : Fragment(), RecyclerViewClickListener {
             chipFight.isChecked = true
             filterByType(true, AptitudeTagEnum.FIGHT, view)
         }
-        chipFight.setOnCheckedChangeListener { chip, isChecked ->
+        chipFight.setOnCheckedChangeListener { _, isChecked ->
             filterByType(isChecked, AptitudeTagEnum.FIGHT, view)
             updatePrefFilterFight(isChecked)
         }
@@ -298,7 +628,7 @@ class AbilitiesFragment : Fragment(), RecyclerViewClickListener {
             chipUtility.isChecked = true
             filterByType(true, AptitudeTagEnum.UTILITY, view)
         }
-        chipUtility.setOnCheckedChangeListener { chip, isChecked ->
+        chipUtility.setOnCheckedChangeListener { _, isChecked ->
             filterByType(isChecked, AptitudeTagEnum.UTILITY, view)
             updatePrefFilterUtility(isChecked)
         }
@@ -309,7 +639,7 @@ class AbilitiesFragment : Fragment(), RecyclerViewClickListener {
             chipHeal.isChecked = true
             filterByType(true, AptitudeTagEnum.HEAL, view)
         }
-        chipHeal.setOnCheckedChangeListener { chip, isChecked ->
+        chipHeal.setOnCheckedChangeListener { _, isChecked ->
             filterByType(isChecked, AptitudeTagEnum.HEAL, view)
             updatePrefFilterHeal(isChecked)
         }
@@ -320,7 +650,7 @@ class AbilitiesFragment : Fragment(), RecyclerViewClickListener {
             chipOutFight.isChecked = true
             filterByType(true, AptitudeTagEnum.OUT_FIGHT, view)
         }
-        chipOutFight.setOnCheckedChangeListener { chip, isChecked ->
+        chipOutFight.setOnCheckedChangeListener { _, isChecked ->
             filterByType(isChecked, AptitudeTagEnum.OUT_FIGHT, view)
             updatePrefFilterOutFight(isChecked)
         }
@@ -344,16 +674,20 @@ class AbilitiesFragment : Fragment(), RecyclerViewClickListener {
                 for (aptitude in aptitudesByType) {
                     var remove = true
                     if (aptitude.tag.contains(AptitudeTagEnum.FIGHT)
-                        && view.findViewById<Chip>(R.id.abilities_aptitude_chip_fight).isChecked) {
+                        && view.findViewById<Chip>(R.id.abilities_aptitude_chip_fight).isChecked
+                    ) {
                         remove = false
                     } else if (aptitude.tag.contains(AptitudeTagEnum.UTILITY)
-                        && view.findViewById<Chip>(R.id.abilities_aptitude_chip_utility).isChecked) {
+                        && view.findViewById<Chip>(R.id.abilities_aptitude_chip_utility).isChecked
+                    ) {
                         remove = false
                     } else if (aptitude.tag.contains(AptitudeTagEnum.HEAL)
-                        && view.findViewById<Chip>(R.id.abilities_aptitude_chip_heal).isChecked) {
+                        && view.findViewById<Chip>(R.id.abilities_aptitude_chip_heal).isChecked
+                    ) {
                         remove = false
                     } else if (aptitude.tag.contains(AptitudeTagEnum.OUT_FIGHT)
-                        && view.findViewById<Chip>(R.id.abilities_aptitude_chip_out_fight).isChecked) {
+                        && view.findViewById<Chip>(R.id.abilities_aptitude_chip_out_fight).isChecked
+                    ) {
                         remove = false
                     }
 
@@ -372,10 +706,10 @@ class AbilitiesFragment : Fragment(), RecyclerViewClickListener {
     private fun chipsSelectedCount(view: View): Int {
         var count = 0
 
-        if (view.findViewById<Chip>(R.id.abilities_aptitude_chip_fight).isChecked) count ++
-        if (view.findViewById<Chip>(R.id.abilities_aptitude_chip_utility).isChecked) count ++
-        if (view.findViewById<Chip>(R.id.abilities_aptitude_chip_heal).isChecked) count ++
-        if (view.findViewById<Chip>(R.id.abilities_aptitude_chip_out_fight).isChecked) count ++
+        if (view.findViewById<Chip>(R.id.abilities_aptitude_chip_fight).isChecked) count++
+        if (view.findViewById<Chip>(R.id.abilities_aptitude_chip_utility).isChecked) count++
+        if (view.findViewById<Chip>(R.id.abilities_aptitude_chip_heal).isChecked) count++
+        if (view.findViewById<Chip>(R.id.abilities_aptitude_chip_out_fight).isChecked) count++
 
         return count
     }
@@ -570,111 +904,5 @@ class AbilitiesFragment : Fragment(), RecyclerViewClickListener {
             ).edit()
         editor.putBoolean(Preferences.PREF_APTITUDES_FILTER_OUT_FIGHT, check)
         editor.apply()
-    }
-
-    /**
-     * Gestion encart métier
-     */
-    private fun fillJob(view: View, componentId: Int, jobPos: Int) {
-        val job = character.jobs[jobPos]
-        val component = view.findViewById<JobComponent>(componentId)
-
-        component.visibility = View.VISIBLE
-        component.jobName.text = job.name
-        component.jobSpecialityLvl.text =
-            getString(R.string.abilities_specialty_lvl, job.specialty, job.level)
-        component.jobModifier.text = getString(R.string.abilities_plus_something, job.modifier)
-        component.jobLifeDiceLvl.text = job.lifeDiceByLvl
-        component.jobArmors.text = job.typeArmor
-        component.jobWeapons.text = job.typeWeapon
-        component.jobThrowSave.text = job.save
-
-        component.jobEdit.setOnClickListener {
-            openJobDialog(jobPos)
-        }
-
-        if (jobPos == 1) { // 2ieme job
-            component.jobDelete.visibility = View.VISIBLE
-            component.jobDelete.setOnClickListener {
-                val builder = AlertDialog.Builder(context)
-                with(builder)
-                {
-                    setTitle(getString(R.string.delete_job))
-                    setMessage(
-                        getString(
-                            R.string.delete_job_txt,
-                            character.jobs[jobPos].name
-                        )
-                    )
-                    setNegativeButton(getString(R.string.cancel)) { dialog, which -> dialog.cancel() }
-                    setPositiveButton(getString(R.string.yes)) { dialog, which ->
-                        character.jobs.removeAt(jobPos)
-                        MainActivity.viewModel.editCharacter(character)
-                        dialog.cancel()
-                    }
-                    show()
-                }
-            }
-        }
-    }
-
-    /**
-     * Ouvre la dialog pour le métier
-     */
-    private fun openJobDialog(jobPos: Int) {
-        val joDialog = Dialog(requireContext(), android.R.style.Theme_NoTitleBar)
-
-        joDialog.setContentView(R.layout.dialog_abilities_job)
-        joDialog.show()
-        joDialog.findViewById<ImageView>(R.id.abilities_job_edit_close)
-            .setOnClickListener { joDialog.dismiss() }
-
-        fillJobDialog(joDialog, jobPos)
-
-        joDialog.findViewById<Button>(R.id.abilities_job_edit_save_button).setOnClickListener {
-            character.jobs[jobPos].name =
-                joDialog.findViewById<EditText>(R.id.abilities_job_edit_name_value).text.toString()
-            character.jobs[jobPos].specialty =
-                joDialog.findViewById<EditText>(R.id.abilities_job_edit_specialty_value).text.toString()
-            character.jobs[jobPos].level =
-                joDialog.findViewById<EditText>(R.id.abilities_job_edit_level_value).text.toString()
-                    .toInt()
-            character.jobs[jobPos].modifier =
-                joDialog.findViewById<EditText>(R.id.abilities_job_edit_modifier_value).text.toString()
-                    .toInt()
-            character.jobs[jobPos].lifeDiceByLvl =
-                joDialog.findViewById<EditText>(R.id.abilities_job_edit_dice_lvl_value).text.toString()
-            character.jobs[jobPos].typeArmor =
-                joDialog.findViewById<EditText>(R.id.abilities_job_edit_armors_value).text.toString()
-            character.jobs[jobPos].typeWeapon =
-                joDialog.findViewById<EditText>(R.id.abilities_job_edit_weapons_value).text.toString()
-            character.jobs[jobPos].save =
-                joDialog.findViewById<EditText>(R.id.abilities_job_edit_throw_save_value).text.toString()
-
-            MainActivity.viewModel.editCharacter(character)
-            joDialog.dismiss()
-        }
-    }
-
-    /**
-     * Rempli la dialog avec les infos du job
-     */
-    private fun fillJobDialog(joDialog: Dialog, jobPos: Int) {
-        joDialog.findViewById<EditText>(R.id.abilities_job_edit_name_value)
-            .setText(character.jobs[jobPos].name)
-        joDialog.findViewById<EditText>(R.id.abilities_job_edit_specialty_value)
-            .setText(character.jobs[jobPos].specialty)
-        joDialog.findViewById<EditText>(R.id.abilities_job_edit_level_value)
-            .setText(character.jobs[jobPos].level.toString())
-        joDialog.findViewById<EditText>(R.id.abilities_job_edit_modifier_value)
-            .setText(character.jobs[jobPos].modifier.toString())
-        joDialog.findViewById<EditText>(R.id.abilities_job_edit_dice_lvl_value)
-            .setText(character.jobs[jobPos].lifeDiceByLvl)
-        joDialog.findViewById<EditText>(R.id.abilities_job_edit_armors_value)
-            .setText(character.jobs[jobPos].typeArmor)
-        joDialog.findViewById<EditText>(R.id.abilities_job_edit_weapons_value)
-            .setText(character.jobs[jobPos].typeWeapon)
-        joDialog.findViewById<EditText>(R.id.abilities_job_edit_throw_save_value)
-            .setText(character.jobs[jobPos].save)
     }
 }

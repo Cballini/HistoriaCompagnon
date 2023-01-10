@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "1063030743595",
+    "firebase_url": "https://historiacompagnon-default-rtdb.europe-west1.firebasedatabase.app",
     "project_id": "historiacompagnon",
     "storage_bucket": "historiacompagnon.appspot.com"
   },
@@ -13,6 +14,51 @@
         }
       },
       "oauth_client": [
+        {
+          "client_id": "1063030743595-qpf4uvvl1up0ltb41hfbbebgv6rciv4s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rp.historiacompagnon",
+            "certificate_hash": "4cbb029d58b456fc8f26e01016b0247f40a7be45"
+          }
+        },
+        {
+          "client_id": "1063030743595-lvbu2nvqp89ju8v6uafhrpjq1pc0o79u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrQ-mMadNrqSw8ehDHKSaKPXxvjrLo9IM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1063030743595-lvbu2nvqp89ju8v6uafhrpjq1pc0o79u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1063030743595:android:b7eb8803f1902b5484406e",
+        "android_client_info": {
+          "package_name": "com.rp.historiacompagnon.debug"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1063030743595-bs85m04krvrt0ea1fegvqn61qtbchveh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.rp.historiacompagnon.debug",
+            "certificate_hash": "4cbb029d58b456fc8f26e01016b0247f40a7be45"
+          }
+        },
         {
           "client_id": "1063030743595-lvbu2nvqp89ju8v6uafhrpjq1pc0o79u.apps.googleusercontent.com",
           "client_type": 3
