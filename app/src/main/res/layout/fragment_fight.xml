@@ -3,6 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
     android:background="@color/dark_background">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -14,6 +15,7 @@
             android:id="@+id/fight_pv"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/app_margin"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/fight_dice"
             app:layout_constraintTop_toTopOf="parent"/>
@@ -22,6 +24,7 @@
             android:id="@+id/fight_dice"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/app_margin"
             app:layout_constraintStart_toEndOf="@+id/fight_pv"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
@@ -31,6 +34,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/small_margin"
+            android:layout_marginHorizontal="@dimen/app_margin"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/fight_ca"
             app:layout_constraintTop_toBottomOf="@+id/fight_pv"/>
@@ -40,6 +44,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/small_margin"
+            android:layout_marginEnd="@dimen/app_margin"
             app:layout_constraintStart_toEndOf="@+id/fight_initiative"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/fight_pv"/>
@@ -49,8 +54,9 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/txt_margin"
+            android:layout_marginHorizontal="@dimen/app_margin"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@+id/fight_glory_points"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/fight_initiative"/>
 
         <com.rp.historiacompagnon.component.IndicComponent
@@ -58,18 +64,157 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/txt_margin"
-            app:layout_constraintStart_toEndOf="@+id/fight_inspiration_points"
+            android:layout_marginHorizontal="@dimen/app_margin"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fight_initiative"/>
+            app:layout_constraintTop_toBottomOf="@+id/fight_inspiration_points"/>
 
         <com.rp.historiacompagnon.component.IndicComponent
             android:id="@+id/fight_speed"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/txt_margin"
+            android:layout_marginHorizontal="@dimen/app_margin"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fight_inspiration_points"/>
+            app:layout_constraintTop_toBottomOf="@+id/fight_glory_points"/>
+
+        <TextView
+            android:id="@+id/fight_equipment_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/app_margin"
+            android:background="@color/colorPrimaryDark"
+            android:elevation="2dp"
+            android:paddingHorizontal="@dimen/small_margin"
+            android:paddingVertical="@dimen/txt_margin"
+            android:text="@string/fight_equipment"
+            android:textAlignment="center"
+            android:textColor="@color/color_cat"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fight_speed" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/fight_equipment_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/app_margin"
+        android:layout_marginTop="@dimen/double_app_margin"
+        android:background="@color/dark_panel"
+        android:elevation="1dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fight_speed">
+
+        <TextView
+            android:id="@+id/fight_equipment_weapon_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fight_equipment_weapons"
+            android:textColor="@color/color_txt"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/app_margin"
+            android:layout_marginStart="@dimen/app_margin"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <LinearLayout
+            android:id="@+id/fight_equipment_weapon_recycler_layout"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingVertical="@dimen/txt_margin"
+            android:layout_marginTop="@dimen/small_margin"
+            android:layout_marginHorizontal="@dimen/app_margin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fight_equipment_weapon_title"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/fight_equipment_weapon_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/component_equipment" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/fight_equipment_shield_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fight_equipment_shield"
+            android:textColor="@color/color_txt"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/app_margin"
+            android:layout_marginStart="@dimen/app_margin"
+            app:layout_constraintTop_toBottomOf="@+id/fight_equipment_weapon_recycler_layout"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <com.rp.historiacompagnon.component.EquipmentComponent
+            android:id="@+id/fight_equipment_shield"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/small_margin"
+            android:layout_marginHorizontal="@dimen/app_margin"
+            app:layout_constraintTop_toBottomOf="@+id/fight_equipment_shield_title"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:id="@+id/fight_equipment_armor_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fight_equipment_armor"
+            android:textColor="@color/color_txt"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/app_margin"
+            android:layout_marginStart="@dimen/app_margin"
+            app:layout_constraintTop_toBottomOf="@+id/fight_equipment_shield"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <com.rp.historiacompagnon.component.EquipmentComponent
+            android:id="@+id/fight_equipment_armor"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/small_margin"
+            android:layout_marginHorizontal="@dimen/app_margin"
+            app:layout_constraintTop_toBottomOf="@+id/fight_equipment_armor_title"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <TextView
+            android:id="@+id/fight_equipment_accessories_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/fight_equipment_accessories"
+            android:textColor="@color/color_txt"
+            android:textStyle="bold"
+            android:layout_marginTop="@dimen/app_margin"
+            android:layout_marginStart="@dimen/app_margin"
+            app:layout_constraintTop_toBottomOf="@+id/fight_equipment_armor"
+            app:layout_constraintStart_toStartOf="parent"/>
+
+        <LinearLayout
+            android:id="@+id/fight_equipment_accessory_recycler_layout"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:paddingVertical="@dimen/txt_margin"
+            android:layout_marginTop="@dimen/small_margin"
+            android:layout_marginHorizontal="@dimen/app_margin"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/fight_equipment_accessories_title"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/fight_equipment_accessory_recycler"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                tools:listitem="@layout/component_equipment" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

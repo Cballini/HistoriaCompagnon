@@ -15,6 +15,8 @@ class IndicComponent@JvmOverloads constructor(
     var indicTitle: TextView
     var indicValue: TextView
 
+    var indicPlus: ImageView
+    var indicMinus: ImageView
     var indicEdit: ImageView
 
 
@@ -24,5 +26,7 @@ class IndicComponent@JvmOverloads constructor(
         indicTitle = findViewById(R.id.fight_indic_title)
         indicValue = findViewById(R.id.fight_indic_value)
         indicEdit = findViewById(R.id.fight_indic_edit)
+        indicPlus = findViewById(R.id.fight_indic_plus)
+        indicMinus = findViewById(R.id.fight_indic_minus)
     }
 }

@@ -1,0 +1,208 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/equipment_main"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="@dimen/txt_margin"
+        android:paddingVertical="@dimen/small_margin"
+        android:background="@color/dark_bar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/equipment_type_icon"
+            android:layout_width="@dimen/icon_edit_size"
+            android:layout_height="@dimen/icon_edit_size"
+            android:layout_marginHorizontal="@dimen/small_margin"
+            android:src="@drawable/sword"
+            app:tint="@color/colorPrimary"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintStart_toEndOf="@+id/equipment_type_icon"
+            app:layout_constraintEnd_toStartOf="@+id/equipment_expand"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+            <TextView
+                android:id="@+id/equipment_name"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Epée de la destinée"
+                android:layout_marginHorizontal="@dimen/small_margin"
+                android:textSize="@dimen/cat_txt"
+                android:textColor="@color/color_txt"/>
+
+            <TextView
+                android:id="@+id/equipment_damage_ca"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="2d6 + force"
+                android:textColor="@color/color_txt"
+                android:layout_marginHorizontal="@dimen/small_margin"/>
+
+            <TextView
+                android:id="@+id/equipment_properties"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Parade, Aristocratique, Finesse"
+                android:textColor="@color/color_txt"
+                android:layout_marginHorizontal="@dimen/small_margin"/>
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/equipment_expand"
+            android:layout_width="@dimen/icon_edit_size"
+            android:layout_height="@dimen/icon_edit_size"
+            android:src="@drawable/expand_more"
+            android:layout_marginEnd="@dimen/txt_margin"
+            app:tint="@color/color_txt"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <com.google.android.material.divider.MaterialDivider
+        android:id="@+id/equipment_divider_between"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/equipment_main"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/equipment_unfolded"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:background="@color/dark_bar"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/equipment_divider_between">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/equipment_special_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/small_margin"
+            android:paddingVertical="@dimen/txt_margin"
+            android:background="@color/dark_bar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/equipment_special"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/txt_margin"
+                android:text="@string/equipment_special"
+                android:textColor="@color/color_txt"
+                android:background="@color/colorPrimaryDark"
+                android:padding="@dimen/txt_margin"
+                android:elevation="1dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/equipment_special_value"
+                app:layout_constraintStart_toStartOf="@+id/equipment_special_value" />
+
+            <TextView
+                android:id="@+id/equipment_special_value"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/app_margin"
+                android:background="@color/dark_panel"
+                android:paddingHorizontal="@dimen/small_margin"
+                android:paddingTop="@dimen/app_margin_and_half"
+                android:paddingBottom="@dimen/txt_margin"
+                android:text="brille la nuit"
+                android:textColor="@color/color_txt"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/equipment_description_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingHorizontal="@dimen/small_margin"
+            android:paddingVertical="@dimen/txt_margin"
+            android:background="@color/dark_bar"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/equipment_special_layout">
+
+            <TextView
+                android:id="@+id/equipment_description"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/txt_margin"
+                android:text="@string/description"
+                android:textColor="@color/color_txt"
+                android:background="@color/colorPrimaryDark"
+                android:padding="@dimen/txt_margin"
+                android:elevation="1dp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/equipment_description_value"
+                app:layout_constraintStart_toStartOf="@+id/equipment_description_value" />
+
+            <TextView
+                android:id="@+id/equipment_description_value"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/app_margin"
+                android:background="@color/dark_panel"
+                android:paddingHorizontal="@dimen/small_margin"
+                android:paddingTop="@dimen/app_margin_and_half"
+                android:paddingBottom="@dimen/txt_margin"
+                android:text="donné par Toto \nparade = tatato"
+                android:textColor="@color/color_txt"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            android:id="@+id/equipment_delete"
+            android:layout_width="@dimen/button_mini"
+            android:layout_height="@dimen/button_mini"
+            android:src="@drawable/delete"
+            android:layout_marginVertical="@dimen/small_margin"
+            android:layout_marginHorizontal="@dimen/app_margin"
+            app:tint="@color/red"
+            app:layout_constraintTop_toBottomOf="@+id/equipment_description_layout"
+            app:layout_constraintEnd_toStartOf="@+id/equipment_edit"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <ImageView
+            android:id="@+id/equipment_edit"
+            android:layout_width="@dimen/button_mini"
+            android:layout_height="@dimen/button_mini"
+            android:src="@drawable/edit"
+            android:layout_marginVertical="@dimen/small_margin"
+            android:layout_marginHorizontal="@dimen/app_margin"
+            app:tint="@color/color_txt"
+            app:layout_constraintTop_toBottomOf="@+id/equipment_description_layout"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <com.google.android.material.divider.MaterialDivider
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

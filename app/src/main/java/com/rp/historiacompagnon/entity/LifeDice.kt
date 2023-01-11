@@ -1,6 +1,6 @@
 package com.rp.historiacompagnon.entity
 
-data class LifeDice(var type: String, var number: Int, var job: String) {
+data class LifeDice(var type: Int, var number: Int, var job: String) {
 
-    constructor() : this("", 0, "")
+    constructor() : this(0, 0, "")
 }

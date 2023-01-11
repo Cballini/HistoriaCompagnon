@@ -464,7 +464,7 @@ class AbilitiesFragment : Fragment(), RecyclerViewClickListener {
                     character.aptitudes[position] = newAptitude
                 }
 
-                Services.editCharacter(character, MainActivity.viewModel.user.value!!.key)
+                MainActivity.viewModel.editCharacter(character)
 
                 aptitudeDialog.dismiss()
             }

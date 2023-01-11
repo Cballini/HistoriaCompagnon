@@ -3,6 +3,7 @@ package com.rp.historiacompagnon.viewModel
 import android.content.Context
 import android.util.Log
 import android.widget.Toast
+import com.rp.historiacompagnon.MainActivity
 import com.rp.historiacompagnon.R
 import com.rp.historiacompagnon.Services
 import com.rp.historiacompagnon.entity.Team
@@ -60,7 +61,7 @@ class TeamViewModel(team: Team, user: User, characters: ArrayList<Character>) {
         val newCharater = Character()
         newCharater.team = team.key
         newCharater.player = user.key
-        Services.editCharacter(newCharater, user.key)
+        Services.editCharacter(newCharater, user.key, MainActivity.viewModel.currentTeam.value!!.mj)
     }
 
     /**

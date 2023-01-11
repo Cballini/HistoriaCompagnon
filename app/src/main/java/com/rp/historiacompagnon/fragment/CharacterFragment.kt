@@ -224,7 +224,7 @@ class CharacterFragment : Fragment() {
                     character.description =
                         descriptionDialog.findViewById<EditText>(R.id.character_description_edit_value).text.toString()
 
-                    Services.editCharacter(character, MainActivity.viewModel.user.value!!.key)
+                    MainActivity.viewModel.editCharacter(character)
 
                     descriptionDialog.dismiss()
                 }
@@ -257,7 +257,7 @@ class CharacterFragment : Fragment() {
                     character.destiny.trait =
                         destinyDialog.findViewById<EditText>(R.id.character_destiny_edit_trait_value).text.toString()
 
-                    Services.editCharacter(character, MainActivity.viewModel.user.value!!.key)
+                    MainActivity.viewModel.editCharacter(character)
 
                     destinyDialog.dismiss()
                 }
@@ -289,7 +289,7 @@ class CharacterFragment : Fragment() {
                     character.career.description =
                         careerDialog.findViewById<EditText>(R.id.character_career_edit_description_value).text.toString()
 
-                    Services.editCharacter(character, MainActivity.viewModel.user.value!!.key)
+                    MainActivity.viewModel.editCharacter(character)
 
                     careerDialog.dismiss()
                 }
@@ -360,7 +360,7 @@ class CharacterFragment : Fragment() {
                                 .toInt()
                     }
 
-                    Services.editCharacter(character, MainActivity.viewModel.user.value!!.key)
+                    MainActivity.viewModel.editCharacter(character)
 
                     baseDialog.dismiss()
                 }

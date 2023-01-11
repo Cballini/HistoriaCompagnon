@@ -111,10 +111,34 @@
     <string name="fight_pv_slash">/</string>
     <string name="fight_pv_d">d</string>
     <string name="fight_init">Initiative</string>
+    <string name="fight_init_dice">1d20 %1$s</string>
     <string name="fight_ca">CA</string>
     <string name="fight_speed">Vitesse</string>
     <string name="fight_glory_points">Points de gloire</string>
     <string name="fight_inspiration_points">Points d\'inspiration</string>
+    <string name="fight_equipment">Equipement</string>
+    <string name="fight_equipment_weapons">Arme(s)</string>
+    <string name="fight_equipment_shield">Bouclier</string>
+    <string name="fight_equipment_armor">Armure</string>
+    <string name="fight_equipment_accessories">Accessoire(s)</string>
+    <string name="fight_add_pv">Ajouter des PVs</string>
+    <string name="fight_minus_pv">Retirer des PVs</string>
+    <string name="fight_edit_pv">Modifier PVs</string>
+    <string name="fight_edit_pv_dice">Modifier dés de vie</string>
+    <string name="fight_max_pv">PV max</string>
+    <string name="fight_nb_dice">Quantité</string>
+    <string name="fight_type_dice">Type</string>
+    <!-- Equipment -->
+    <string name="equipment_special">Spécial</string>
+    <string name="equipment_x_damage">%1$s de dégats</string>
+    <string name="equipment_x_ca">%1$s de CA</string>
+    <string name="equipment_damage">Dégats</string>
+    <string name="equipment_ca">CA</string>
+    <string name="equipment_properties">Propriétés</string>
+    <string name="equipment_edit_weapon">Modifier une arme</string>
+    <string name="equipment_edit_shield">Modifier un bouclier</string>
+    <string name="equipment_edit_accessory">Modifier un accessoire</string>
+    <string name="equipment_edit_armor">Modifier une armure</string>
 
     <string name="cancel">Annuler</string>
     <string name="back">Retour</string>

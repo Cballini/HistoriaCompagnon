@@ -12,7 +12,6 @@
         android:id="@+id/fight_indic_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/app_margin"
         android:background="@color/colorPrimaryDark"
         android:elevation="2dp"
         android:paddingHorizontal="@dimen/small_margin"
@@ -24,16 +23,28 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/fight_indic_value_layout"
+    <View
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/double_app_margin"
-        android:layout_marginEnd="@dimen/app_margin"
-        android:padding="@dimen/small_margin"
+        android:layout_height="0dp"
+        android:layout_marginStart="@dimen/app_margin"
         android:background="@color/dark_panel"
         android:elevation="1dp"
         app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/fight_indic_value_layout"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+    </View>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/fight_indic_value_layout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="@dimen/small_margin"
+        android:elevation="1dp"
+        android:background="@color/dark_panel"
+        app:layout_constraintStart_toEndOf="@+id/fight_indic_title"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
@@ -42,11 +53,34 @@
             android:layout_height="wrap_content"
             android:text="10"
             android:paddingVertical="@dimen/txt_margin"
+            android:layout_marginEnd="@dimen/button_mini"
             android:textColor="@color/color_txt"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"/>
+
+        <ImageView
+            android:id="@+id/fight_indic_plus"
+            android:layout_width="@dimen/button_mini"
+            android:layout_height="@dimen/button_mini"
+            android:layout_marginEnd="@dimen/txt_margin"
+            android:visibility="gone"
+            android:src="@drawable/ic_baseline_exposure_plus_1_24"
+            app:tint="@color/light_green"
+            app:layout_constraintEnd_toStartOf="@+id/fight_indic_minus"
+            app:layout_constraintBottom_toBottomOf="parent"/>
+
+        <ImageView
+            android:id="@+id/fight_indic_minus"
+            android:layout_width="@dimen/button_mini"
+            android:layout_height="@dimen/button_mini"
+            android:layout_marginEnd="@dimen/txt_margin"
+            android:visibility="gone"
+            android:src="@drawable/ic_baseline_exposure_neg_1_24"
+            app:tint="@color/red"
+            app:layout_constraintEnd_toStartOf="@+id/fight_indic_edit"
+            app:layout_constraintBottom_toBottomOf="parent"/>
 
         <ImageView
             android:id="@+id/fight_indic_edit"

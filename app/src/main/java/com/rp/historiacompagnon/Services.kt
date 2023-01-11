@@ -73,9 +73,9 @@ object Services {
     }
 
     @JvmStatic
-    fun editCharacter(character: Character, userKey: String){
+    fun editCharacter(character: Character, userKey: String, mjKey: String){
         // Edition perso possible si user = player
-        if(userKey == character.player) {
+        if(userKey == character.player || mjKey == userKey) {
             val ref = database.child("character")
             if(character.key.isEmpty()){
                 val key = ref.push().key

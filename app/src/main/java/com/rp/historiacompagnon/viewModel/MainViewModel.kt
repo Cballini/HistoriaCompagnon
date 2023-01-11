@@ -63,7 +63,7 @@ class MainViewModel {
 
     fun editCharacter(character: Character){
         if(null != _user.value){
-            Services.editCharacter(character, _user.value!!.key)
+            Services.editCharacter(character, _user.value!!.key, _currentTeam.value!!.mj)
         }
     }
 }

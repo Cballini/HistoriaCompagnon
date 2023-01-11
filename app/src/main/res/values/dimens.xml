@@ -25,4 +25,6 @@
     <dimen name="button_mini">24dp</dimen>
 
     <dimen name="player_card_height">120dp</dimen>
+
+    <dimen name="space_text_field">75dp</dimen>
 </resources>
