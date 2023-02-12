@@ -198,7 +198,7 @@ class RelationshipFragment : Fragment(), RecyclerViewClickListener {
      */
     private fun getPrefValueSortType() = requireContext().getSharedPreferences(
         Preferences.PREF_PNJ_SORT_TYPE, Preferences.PRIVATE_MODE
-    ).getString(Preferences.PREF_PNJ_SORT_TYPE, AptitudeTypeEnum.ACTION.value)
+    ).getString(Preferences.PREF_PNJ_SORT_TYPE, RelationshipTypeEnum.LOVER.value)
 
     private fun openPnjDialog(position: Int): Dialog {
         val pnjDialog = Dialog(requireContext(), android.R.style.Theme_NoTitleBar)

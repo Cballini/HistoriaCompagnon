@@ -27,9 +27,9 @@ import com.rp.historiacompagnon.entity.Equipment
 import com.rp.historiacompagnon.entity.LifeDice
 import com.rp.historiacompagnon.enum.CharacteristicEnum
 import com.rp.historiacompagnon.enum.EquipmentTypeEnum
-import com.rp.historiacompagnon.util.RecyclerViewEquipmenetClickListener
+import com.rp.historiacompagnon.util.RecyclerViewEquipmentClickListener
 
-class FightFragment : Fragment(), RecyclerViewEquipmenetClickListener {
+class FightFragment : Fragment(), RecyclerViewEquipmentClickListener {
     private var character = Character()
     private var shield: Equipment? = null
     private var armor: Equipment? = null
@@ -131,10 +131,11 @@ class FightFragment : Fragment(), RecyclerViewEquipmenetClickListener {
         MainActivity.viewModel.currentCharacter.observe(viewLifecycleOwner, Observer {
             character = it
 
+            // TODO voir refacto recycler
             shield = character.inventory.equipments
-                .find { s -> s.equiped && s.type == EquipmentTypeEnum.SHIELD }
+                .findLast { s -> s.equiped && s.type == EquipmentTypeEnum.SHIELD }
             armor = character.inventory.equipments
-                .find { s -> s.equiped && s.type == EquipmentTypeEnum.ARMOR }
+                .findLast { s -> s.equiped && s.type == EquipmentTypeEnum.ARMOR }
             weapons = character.inventory.equipments.filter { w ->
                 w.equiped && (w.type == EquipmentTypeEnum.WEAPON
                         || w.type == EquipmentTypeEnum.WEAPON_RANGE
@@ -422,6 +423,8 @@ class FightFragment : Fragment(), RecyclerViewEquipmenetClickListener {
 
         equipmentDialog.setContentView(R.layout.dialog_equipment)
 
+        equipmentDialog.findViewById<LinearLayout>(R.id.equipment_edit_type_layout).visibility = View.GONE
+
         when (equipment.type) {
             EquipmentTypeEnum.SHIELD -> {
                 equipmentDialog.findViewById<TextView>(R.id.equipment_edit_title).text =
@@ -477,6 +480,9 @@ class FightFragment : Fragment(), RecyclerViewEquipmenetClickListener {
         equipmentDialog.findViewById<TextInputEditText>(R.id.equipment_edit_description_value)
             .setText(equipment.description)
 
+        // TODO voir pb quand déséquiper et plus rien derrière → voir modif recycler
+        equipmentDialog.findViewById<CheckBox>(R.id.equipment_edit_equiped).isChecked = equipment.equiped
+
         equipmentDialog.findViewById<Button>(R.id.equipment_edit_save_button).setOnClickListener {
             var characterEquipment = character.inventory.equipments.find { e -> e == equipment }
 
@@ -502,7 +508,7 @@ class FightFragment : Fragment(), RecyclerViewEquipmenetClickListener {
             equipment.special = equipmentDialog.findViewById<TextInputEditText>(R.id.equipment_edit_special_value).text.toString()
             equipment.description = equipmentDialog.findViewById<TextInputEditText>(R.id.equipment_edit_description_value).text.toString()
 
-            equipment.equiped = true
+            equipment.equiped = equipmentDialog.findViewById<CheckBox>(R.id.equipment_edit_equiped).isChecked
 
             if ( null == characterEquipment) {
                 character.inventory.equipments.add(equipment)
@@ -525,7 +531,7 @@ class FightFragment : Fragment(), RecyclerViewEquipmenetClickListener {
         viewAdapterAccessories.notifyDataSetChanged()
     }
 
-    override fun onItemClicked(equipment: Equipment, id: Int) {
+    override fun onEquipmentClicked(equipment: Equipment, position: Int, id: Int) {
         when (id) {
            /* R.id.equipment_delete ->*/ // TODO
             R.id.equipment_edit -> openEquipmentDialog(equipment)

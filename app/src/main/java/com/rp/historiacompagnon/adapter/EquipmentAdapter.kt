@@ -11,11 +11,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.rp.historiacompagnon.R
 import com.rp.historiacompagnon.entity.Equipment
 import com.rp.historiacompagnon.enum.EquipmentTypeEnum
-import com.rp.historiacompagnon.util.RecyclerViewEquipmenetClickListener
+import com.rp.historiacompagnon.util.RecyclerViewEquipmentClickListener
 
 class EquipmentAdapter(
     var mDataset: MutableList<Equipment>,
-    callback: RecyclerViewEquipmenetClickListener,
+    callback: RecyclerViewEquipmentClickListener,
     context: Context
 ) : RecyclerView.Adapter<EquipmentAdapter.ViewHolder>() {
     private var callback = callback
@@ -78,10 +78,10 @@ class EquipmentAdapter(
             }
         }
         holder.lineObject.findViewById<ImageView>(R.id.equipment_delete).setOnClickListener {
-            callback.onItemClicked(equipment, R.id.equipment_delete)
+            callback.onEquipmentClicked(equipment, position, R.id.equipment_delete)
         }
         holder.lineObject.findViewById<ImageView>(R.id.equipment_edit).setOnClickListener {
-            callback.onItemClicked(equipment, R.id.equipment_edit)
+            callback.onEquipmentClicked(equipment, position, R.id.equipment_edit)
         }
     }
 

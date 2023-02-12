@@ -142,6 +142,8 @@
     <string name="equipment_edit_weapon_cac">Arme de corps à corps</string>
     <string name="equipment_edit_weapon_range">Arme à distance</string>
     <string name="equipment_edit_weapon_gun">Arme à feu</string>
+    <string name="equipment_delete">Supprimer équipement</string>
+    <string name="equipment_delete_txt">Etes-vous sûr de vouloir supprimer l\'équipement %1$s ?</string>
     <!-- Pnj -->
     <string name="pnj">PNJ</string>
     <string name="pnj_short_description">Description courte</string>
@@ -149,6 +151,15 @@
     <!-- Delete pnj -->
     <string name="delete_pnj">Supprimer PNJ</string>
     <string name="delete_pnj_txt">Etes-vous sûr de vouloir supprimer le PNJ %1$s ?</string>
+    <!-- Inventory -->
+    <string name="equiped">Equipé</string>
+    <string name="stuff_nb">Qté</string>
+    <string name="item_quantity">Quantité</string>
+    <string name="item_type">Type</string>
+    <string name="item_title">Objet</string>
+    <string name="item_delete">Supprimer objet</string>
+    <string name="item_delete_txt">Etes-vous sûr de vouloir supprimer l\'objet %1$s ?</string>
+    <string name="inventory_equipments">Equipements</string>
 
 
     <string name="cancel">Annuler</string>
