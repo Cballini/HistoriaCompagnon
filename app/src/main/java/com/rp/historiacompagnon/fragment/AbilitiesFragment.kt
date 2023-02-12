@@ -247,10 +247,13 @@ class AbilitiesFragment : Fragment(), RecyclerViewClickListener {
     private fun setCharacteristicCharacter(characteristic: CharacteristicEnum, viewId: Int, dialog: Dialog) {
         var characterCharac = getCharacteristic(characteristic)
         if (null == characterCharac) {
+            val charac = dialog.findViewById<EditText>(viewId).text.toString()
+            var characValue = 0
+            if (charac.isNotEmpty()) characValue = charac.toInt()
             character.characteristics.add(
                 Characteristic(
                     characteristic,
-                    dialog.findViewById<EditText>(viewId).text.toString().toInt()
+                    characValue
                 )
             )
         } else {
@@ -305,20 +308,20 @@ class AbilitiesFragment : Fragment(), RecyclerViewClickListener {
     }
 
     private fun getCaracteristicModifier(acrobaticsSkill: Skill): String {
-        var modifier = ""
+        var modifier = "0"
         when (acrobaticsSkill.name.attribute) {
             CharacteristicEnum.STRENGTH -> {
                 modifier = if (null != strengthVal) {
                     CharacteristicEnum.getCharacteristicModifier(strengthVal!!)
                 } else {
-                    ""
+                    "0"
                 }
             }
             CharacteristicEnum.DEXTERITY -> {
                 modifier = if (null != dexVal) {
                     CharacteristicEnum.getCharacteristicModifier(dexVal!!)
                 } else {
-                    ""
+                    "0"
                 }
             }
 
@@ -326,28 +329,28 @@ class AbilitiesFragment : Fragment(), RecyclerViewClickListener {
                 modifier = if (null != constVal) {
                     CharacteristicEnum.getCharacteristicModifier(constVal!!)
                 } else {
-                    ""
+                    "0"
                 }
             }
             CharacteristicEnum.CHARISMA -> {
                 modifier = if (null != charismaVal) {
                     CharacteristicEnum.getCharacteristicModifier(charismaVal!!)
                 } else {
-                    ""
+                    "0"
                 }
             }
             CharacteristicEnum.WISDOM -> {
                 modifier = if (null != wisdomVal) {
                     CharacteristicEnum.getCharacteristicModifier(wisdomVal!!)
                 } else {
-                    ""
+                    "0"
                 }
             }
             CharacteristicEnum.INTELLECT -> {
                 modifier = if (null != intVal) {
                     CharacteristicEnum.getCharacteristicModifier(intVal!!)
                 } else {
-                    ""
+                    "0"
                 }
             }
         }
@@ -841,6 +844,15 @@ class AbilitiesFragment : Fragment(), RecyclerViewClickListener {
                 sort.addAll(passive)
                 sort.addAll(avantage)
                 sort.addAll(desavantage)
+            }
+            else -> {
+                sort.addAll(actions)
+                sort.addAll(bonusActions)
+                sort.addAll(reaction)
+                sort.addAll(passive)
+                sort.addAll(avantage)
+                sort.addAll(desavantage)
+                sort.addAll(spell)
             }
         }
 

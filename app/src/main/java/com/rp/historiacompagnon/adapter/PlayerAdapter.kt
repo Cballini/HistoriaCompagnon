@@ -12,7 +12,7 @@ import com.rp.historiacompagnon.util.RecyclerViewClickListener
 
 class PlayerAdapter (var mDataset: MutableList<Character>, callback : RecyclerViewClickListener, characterKey: String) : RecyclerView.Adapter<PlayerAdapter.ViewHolder>() {
     private var callback = callback
-    private var characterKey = characterKey
+    var characterKey = characterKey
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val item = LayoutInflater.from(parent.context)

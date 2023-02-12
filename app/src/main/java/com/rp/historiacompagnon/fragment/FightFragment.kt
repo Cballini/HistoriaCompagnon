@@ -6,7 +6,9 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
@@ -147,12 +149,14 @@ class FightFragment : Fragment(), RecyclerViewEquipmenetClickListener {
             updateDiceView(diceView)
 
             // Maj Initiative
-            initView.indicValue.text = getString(
-                R.string.fight_init_dice,
-                CharacteristicEnum.getCharacteristicModifier(character.characteristics
-                    .find { c -> c.name == CharacteristicEnum.DEXTERITY }!!.value
+            val dex = character.characteristics
+                .find { c -> c.name == CharacteristicEnum.DEXTERITY }
+            if (null != dex) {
+                initView.indicValue.text = getString(
+                    R.string.fight_init_dice,
+                    CharacteristicEnum.getCharacteristicModifier(dex.value)
                 )
-            )
+            }
 
             // Maj CA
             var ca = 0
@@ -422,19 +426,23 @@ class FightFragment : Fragment(), RecyclerViewEquipmenetClickListener {
             EquipmentTypeEnum.SHIELD -> {
                 equipmentDialog.findViewById<TextView>(R.id.equipment_edit_title).text =
                     getString(R.string.equipment_edit_shield)
+                equipmentDialog.findViewById<LinearLayout>(R.id.equipment_edit_weapon_type_layout).visibility = View.GONE
             }
             EquipmentTypeEnum.ARMOR -> {
                 equipmentDialog.findViewById<TextView>(R.id.equipment_edit_title).text =
                     getString(R.string.equipment_edit_armor)
+                equipmentDialog.findViewById<LinearLayout>(R.id.equipment_edit_weapon_type_layout).visibility = View.GONE
             }
             EquipmentTypeEnum.OTHER -> {
                 equipmentDialog.findViewById<TextView>(R.id.equipment_edit_title).text =
                     getString(R.string.equipment_edit_accessory)
+                equipmentDialog.findViewById<LinearLayout>(R.id.equipment_edit_weapon_type_layout).visibility = View.GONE
             }
             else -> {
                 // Tous types armes
                 equipmentDialog.findViewById<TextView>(R.id.equipment_edit_title).text =
                     getString(R.string.equipment_edit_weapon)
+                equipmentDialog.findViewById<LinearLayout>(R.id.equipment_edit_weapon_type_layout).visibility = View.VISIBLE
             }
         }
 
@@ -457,6 +465,9 @@ class FightFragment : Fragment(), RecyclerViewEquipmenetClickListener {
                 .setText(equipment.damage)
             equipmentDialog.findViewById<TextInputLayout>(R.id.equipment_edit_ca_layout)
                 .visibility = View.GONE
+            if (equipment.type == EquipmentTypeEnum.WEAPON) equipmentDialog.findViewById<CheckBox>(R.id.equipment_edit_weapon_type_cac).isChecked = true
+            if (equipment.type == EquipmentTypeEnum.WEAPON_RANGE) equipmentDialog.findViewById<CheckBox>(R.id.equipment_edit_weapon_type_range).isChecked = true
+            if (equipment.type == EquipmentTypeEnum.GUN) equipmentDialog.findViewById<CheckBox>(R.id.equipment_edit_weapon_type_gun).isChecked = true
         }
 
         equipmentDialog.findViewById<TextInputEditText>(R.id.equipment_edit_properties_value)
@@ -477,6 +488,15 @@ class FightFragment : Fragment(), RecyclerViewEquipmenetClickListener {
                         .toInt()
             } else {
                 equipment.damage = equipmentDialog.findViewById<TextInputEditText>(R.id.equipment_edit_damage_value).text.toString()
+                if (equipmentDialog.findViewById<CheckBox>(R.id.equipment_edit_weapon_type_cac).isChecked) {
+                    equipment.type = EquipmentTypeEnum.WEAPON
+                }
+                if (equipmentDialog.findViewById<CheckBox>(R.id.equipment_edit_weapon_type_range).isChecked) {
+                    equipment.type = EquipmentTypeEnum.WEAPON_RANGE
+                }
+                if (equipmentDialog.findViewById<CheckBox>(R.id.equipment_edit_weapon_type_gun).isChecked) {
+                    equipment.type = EquipmentTypeEnum.GUN
+                }
             }
             equipment.properties = equipmentDialog.findViewById<TextInputEditText>(R.id.equipment_edit_properties_value).text.toString()
             equipment.special = equipmentDialog.findViewById<TextInputEditText>(R.id.equipment_edit_special_value).text.toString()

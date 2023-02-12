@@ -75,6 +75,11 @@ class TeamDialogFragment : DialogFragment(), RecyclerViewClickListener {
             viewAdapterPlayer.mDataset = viewModel.characters
             viewAdapterPlayer.notifyDataSetChanged()
         })
+
+        MainActivity.viewModel.currentCharacter.observe(viewLifecycleOwner, Observer {
+            viewAdapterPlayer.characterKey = it.key
+            viewAdapterPlayer.notifyDataSetChanged()
+        })
     }
 
     override fun onStart() {

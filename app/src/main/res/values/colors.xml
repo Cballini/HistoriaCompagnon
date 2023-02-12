@@ -1,17 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#81C1DF</color>
-    <color name="colorPrimaryUnselect">#9FBAC6</color>
-    <color name="colorPrimaryDark">#518AA5</color>
+    <color name="colorPrimary">#65a9af</color>
+    <color name="colorPrimaryUnselect">#a27f86</color>
+    <color name="colorPrimaryDark">#6a2a3c</color>
     <color name="colorAccent">#FFC300</color>
 
-    <color name="light_green">#ADCDA3</color>
+    <color name="light_green">#87cebc</color>
     <color name="green">#97D086</color>
     <color name="grey">#E3E3E3</color>
     <color name="medium_grey">#989898</color>
-    <color name="red">#F55A56</color>
-    <color name="bonus">#6FA8C4</color>
+    <color name="red">#c55166</color>
+    <color name="bonus">#bc9743</color>
     <color name="malus">#F04534</color>
+
+    <color name="love">#EC407A</color>
+    <color name="opponent">#F44336</color>
+    <color name="rival">#FF8A65</color>
+    <color name="family">#26A69A</color>
+    <color name="neutral">#7c7373</color>
+    <color name="friend">#8BC34A</color>
 
     <color name="color_cat">#DAD8D2</color>
     <color name="color_txt">#CBC4BE</color>
@@ -21,9 +28,6 @@
     <color name="light_panel">#D7CCC8</color>
     <color name="dark_bar">#575150</color>
 
-    <color name="purple_200">#FFBB86FC</color>
-    <color name="purple_500">#FF6200EE</color>
-    <color name="purple_700">#FF3700B3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>

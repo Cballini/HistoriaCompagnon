@@ -1,6 +1,8 @@
 package com.rp.historiacompagnon
 
 import android.content.ContentValues.TAG
+import android.content.Context
+import android.content.SharedPreferences
 import android.util.Log
 import com.google.android.gms.tasks.Task
 import com.google.firebase.database.DataSnapshot
@@ -73,7 +75,7 @@ object Services {
     }
 
     @JvmStatic
-    fun editCharacter(character: Character, userKey: String, mjKey: String){
+    fun editCharacter(character: Character, userKey: String, mjKey: String, isNew: Boolean, context: Context?){
         // Edition perso possible si user = player
         if(userKey == character.player || mjKey == userKey) {
             val ref = database.child("character")
@@ -92,6 +94,16 @@ object Services {
             )
 
             ref.updateChildren(childUpdates)
+
+            if (isNew) { // select perso créé
+                val sharedPref: SharedPreferences = context!!.getSharedPreferences(
+                    Preferences.PREF_CURRENT_CHARACTER,
+                    Preferences.PRIVATE_MODE
+                )
+                val editor = sharedPref.edit()
+                editor.putString(Preferences.PREF_CURRENT_CHARACTER, character.key)
+                editor.apply()
+            }
         }
     }
 }

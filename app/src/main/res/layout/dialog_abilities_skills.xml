@@ -408,7 +408,7 @@
                         android:id="@+id/skill_survival_txt"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Investigation"/>
+                        android:text="Survie"/>
                 </LinearLayout>
 
             </androidx.constraintlayout.widget.ConstraintLayout>

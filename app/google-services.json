@@ -15,11 +15,11 @@
       },
       "oauth_client": [
         {
-          "client_id": "1063030743595-qpf4uvvl1up0ltb41hfbbebgv6rciv4s.apps.googleusercontent.com",
+          "client_id": "1063030743595-40tpff90rd8j85mip3efo0590kc02cuu.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
             "package_name": "com.rp.historiacompagnon",
-            "certificate_hash": "4cbb029d58b456fc8f26e01016b0247f40a7be45"
+            "certificate_hash": "b1837fb72235242a8472ce81f42ae17ed4b220fe"
           }
         },
         {

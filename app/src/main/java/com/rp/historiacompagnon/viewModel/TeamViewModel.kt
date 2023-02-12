@@ -1,15 +1,14 @@
 package com.rp.historiacompagnon.viewModel
 
 import android.content.Context
-import android.util.Log
 import android.widget.Toast
 import com.rp.historiacompagnon.MainActivity
 import com.rp.historiacompagnon.R
 import com.rp.historiacompagnon.Services
+import com.rp.historiacompagnon.entity.Character
 import com.rp.historiacompagnon.entity.Team
 import com.rp.historiacompagnon.entity.User
 import com.rp.historiacompagnon.util.Utils
-import com.rp.historiacompagnon.entity.Character
 
 class TeamViewModel(team: Team, user: User, characters: ArrayList<Character>) {
     var team = team
@@ -40,7 +39,7 @@ class TeamViewModel(team: Team, user: User, characters: ArrayList<Character>) {
                 team = c.getValue(Team::class.java)!!
             }
             if(team != Team()) {
-                initNewCharacter()
+                initNewCharacter(context)
 
                 team.players.add(user.key)
                 Services.editTeam(team)
@@ -57,11 +56,11 @@ class TeamViewModel(team: Team, user: User, characters: ArrayList<Character>) {
     /**
      * Création nouveau perso ajouté à la team
      */
-    private fun initNewCharacter() {
+    private fun initNewCharacter(context: Context) {
         val newCharater = Character()
         newCharater.team = team.key
         newCharater.player = user.key
-        Services.editCharacter(newCharater, user.key, MainActivity.viewModel.currentTeam.value!!.mj)
+        Services.editCharacter(newCharater, user.key, MainActivity.viewModel.currentTeam.value!!.mj, true, context)
     }
 
     /**

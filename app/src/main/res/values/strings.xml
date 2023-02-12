@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Historia   Compagnon</string>
+    <string name="app_name">Historia Compagnon</string>
     <string name="historia">Historia</string>
     <string name="historia_app">Historia Compagnon</string>
     <string name="web_client_id">1063030743595-qpf4uvvl1up0ltb41hfbbebgv6rciv4s.apps.googleusercontent.com</string>
@@ -139,6 +139,17 @@
     <string name="equipment_edit_shield">Modifier un bouclier</string>
     <string name="equipment_edit_accessory">Modifier un accessoire</string>
     <string name="equipment_edit_armor">Modifier une armure</string>
+    <string name="equipment_edit_weapon_cac">Arme de corps à corps</string>
+    <string name="equipment_edit_weapon_range">Arme à distance</string>
+    <string name="equipment_edit_weapon_gun">Arme à feu</string>
+    <!-- Pnj -->
+    <string name="pnj">PNJ</string>
+    <string name="pnj_short_description">Description courte</string>
+    <string name="pnj_relashionship_type">Type de relation</string>
+    <!-- Delete pnj -->
+    <string name="delete_pnj">Supprimer PNJ</string>
+    <string name="delete_pnj_txt">Etes-vous sûr de vouloir supprimer le PNJ %1$s ?</string>
+
 
     <string name="cancel">Annuler</string>
     <string name="back">Retour</string>
