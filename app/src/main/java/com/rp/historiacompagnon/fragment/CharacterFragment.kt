@@ -117,6 +117,7 @@ class CharacterFragment : Fragment() {
         component.jobArmors.text = job.typeArmor
         component.jobWeapons.text = job.typeWeapon
         component.jobThrowSave.text = job.save
+        component.jobToolMasteries.text = job.toolMasteries
 
         component.jobEdit.setOnClickListener {
             openJobDialog(jobPos)
@@ -179,6 +180,8 @@ class CharacterFragment : Fragment() {
                 joDialog.findViewById<EditText>(R.id.job_edit_weapons_value).text.toString()
             character.jobs[jobPos].save =
                 joDialog.findViewById<EditText>(R.id.job_edit_throw_save_value).text.toString()
+            character.jobs[jobPos].toolMasteries =
+                joDialog.findViewById<EditText>(R.id.job_edit_tool_masteries_value).text.toString()
 
             MainActivity.viewModel.editCharacter(character)
             joDialog.dismiss()
@@ -205,6 +208,8 @@ class CharacterFragment : Fragment() {
             .setText(character.jobs[jobPos].typeWeapon)
         joDialog.findViewById<EditText>(R.id.job_edit_throw_save_value)
             .setText(character.jobs[jobPos].save)
+        joDialog.findViewById<EditText>(R.id.job_edit_tool_masteries_value)
+            .setText(character.jobs[jobPos].toolMasteries)
     }
 
     private fun openEditDescription(view: View) {

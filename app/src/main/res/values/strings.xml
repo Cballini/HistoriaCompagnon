@@ -38,6 +38,7 @@
     <string name="character_armors">Armures: </string>
     <string name="character_weapons">Armes: </string>
     <string name="character_throw_save">Jets de sauvegarde: </string>
+    <string name="character_tool_masteries">Outils maitrisés: </string>
     <!-- Edit base -->
     <string name="character_edit_base_title">Personnage</string>
     <string name="character_edit_base_name">Prénom</string>
@@ -58,6 +59,7 @@
     <string name="job_edit_armors">Armures</string>
     <string name="job_edit_weapons">Armes</string>
     <string name="job_edit_throw_save">Bonus jets de sauvegarde</string>
+    <string name="job_edit_tool_masteries">Outils maitrisés</string>
     <!-- Delete job -->
     <string name="delete_job">Supprimer métier</string>
     <string name="delete_job_txt">Etes-vous sûr de vouloir supprimer le métier %1$s ?</string>
@@ -180,5 +182,6 @@
         \n - skill: https://icons8.com/icon/EZX8qx3OoQLq/skill
         \n  - skill: https://icons8.com/icon/ScTh4IXihnF9/skill
         \n - potion: https://icons8.com/icon/kVCguktVfr2x/potion
+        \n Politique de confidentialité : https://sites.google.com/view/historiacompagnon-privacy/accueil
     </string>
 </resources>

@@ -8,8 +8,7 @@
         android:id="@+id/pnj_main"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingHorizontal="@dimen/txt_margin"
-        android:paddingVertical="@dimen/small_margin"
+        android:padding="@dimen/txt_margin"
         android:background="@color/dark_bar"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">

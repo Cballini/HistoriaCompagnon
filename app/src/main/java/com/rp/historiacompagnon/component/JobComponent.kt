@@ -20,6 +20,7 @@ class JobComponent@JvmOverloads constructor(
     var jobArmors: TextView
     var jobWeapons: TextView
     var jobThrowSave: TextView
+    var jobToolMasteries: TextView
     var jobEdit: ImageView
     var jobDelete: ImageView
 
@@ -34,6 +35,7 @@ class JobComponent@JvmOverloads constructor(
         jobArmors = findViewById(R.id.job_armors_value)
         jobWeapons = findViewById(R.id.job_weapons_value)
         jobThrowSave = findViewById(R.id.job_throw_save_value)
+        jobToolMasteries = findViewById(R.id.job_tool_masteries_value)
         jobEdit = findViewById(R.id.job_edit)
         jobDelete = findViewById(R.id.job_delete)
     }

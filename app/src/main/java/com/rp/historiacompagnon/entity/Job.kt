@@ -8,7 +8,8 @@ data class Job(
     var lifeDiceByLvl: String,
     var typeArmor: String,
     var typeWeapon: String,
-    var save: String
+    var save: String,
+    var toolMasteries: String
 ) {
-    constructor() : this("", "", 0, 0, "", "", "", "")
+    constructor() : this("", "", 0, 0, "", "", "", "", "")
 }

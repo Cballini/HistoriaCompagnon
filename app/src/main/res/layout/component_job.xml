@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -38,129 +37,149 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
-            android:id="@+id/job_specialty_level"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="@dimen/txt_margin"
-            android:textColor="@color/color_cat"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                android:id="@+id/job_specialty_level"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/txt_margin"
+                android:textColor="@color/color_cat"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/job_modifier"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="@dimen/small_margin"
-            android:text="@string/character_modifier"
-            android:textColor="@color/color_cat"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/job_specialty_level"/>
+            <TextView
+                android:id="@+id/job_modifier"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/small_margin"
+                android:text="@string/character_modifier"
+                android:textColor="@color/color_cat"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/job_specialty_level" />
 
-        <TextView
-            android:id="@+id/job_modifier_value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="@dimen/small_margin"
-            android:layout_marginLeft="@dimen/txt_margin"
-            android:textColor="@color/color_cat"
-            app:layout_constraintStart_toEndOf="@+id/job_modifier"
-            app:layout_constraintTop_toBottomOf="@+id/job_specialty_level"/>
+            <TextView
+                android:id="@+id/job_modifier_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/small_margin"
+                android:layout_marginLeft="@dimen/txt_margin"
+                android:textColor="@color/color_cat"
+                app:layout_constraintStart_toEndOf="@+id/job_modifier"
+                app:layout_constraintTop_toBottomOf="@+id/job_specialty_level" />
 
-        <TextView
-            android:id="@+id/job_life_dice_lvl"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="@dimen/small_margin"
-            android:text="@string/character_life_dice_lvl"
-            android:textColor="@color/color_cat"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/job_modifier"/>
+            <TextView
+                android:id="@+id/job_life_dice_lvl"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/small_margin"
+                android:text="@string/character_life_dice_lvl"
+                android:textColor="@color/color_cat"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/job_modifier" />
 
-        <TextView
-            android:id="@+id/job_life_dice_lvl_value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="@dimen/small_margin"
-            android:layout_marginLeft="@dimen/txt_margin"
-            android:textColor="@color/color_cat"
-            app:layout_constraintStart_toEndOf="@+id/job_life_dice_lvl"
-            app:layout_constraintTop_toBottomOf="@+id/job_modifier"/>
+            <TextView
+                android:id="@+id/job_life_dice_lvl_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/small_margin"
+                android:layout_marginLeft="@dimen/txt_margin"
+                android:textColor="@color/color_cat"
+                app:layout_constraintStart_toEndOf="@+id/job_life_dice_lvl"
+                app:layout_constraintTop_toBottomOf="@+id/job_modifier" />
 
-        <TextView
-            android:id="@+id/job_armors"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="@dimen/small_margin"
-            android:text="@string/character_armors"
-            android:textColor="@color/color_cat"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/job_life_dice_lvl"/>
+            <TextView
+                android:id="@+id/job_armors"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/small_margin"
+                android:text="@string/character_armors"
+                android:textColor="@color/color_cat"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/job_life_dice_lvl" />
 
-        <TextView
-            android:id="@+id/job_armors_value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="@dimen/small_margin"
-            android:layout_marginLeft="@dimen/txt_margin"
-            android:textColor="@color/color_cat"
-            app:layout_constraintStart_toEndOf="@+id/job_armors"
-            app:layout_constraintTop_toBottomOf="@+id/job_life_dice_lvl"/>
+            <TextView
+                android:id="@+id/job_armors_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/small_margin"
+                android:layout_marginLeft="@dimen/txt_margin"
+                android:textColor="@color/color_cat"
+                app:layout_constraintStart_toEndOf="@+id/job_armors"
+                app:layout_constraintTop_toBottomOf="@+id/job_life_dice_lvl" />
 
-        <TextView
-            android:id="@+id/job_weapons"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="@dimen/small_margin"
-            android:text="@string/character_weapons"
-            android:textColor="@color/color_cat"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/job_armors"/>
+            <TextView
+                android:id="@+id/job_weapons"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/small_margin"
+                android:text="@string/character_weapons"
+                android:textColor="@color/color_cat"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/job_armors" />
 
-        <TextView
-            android:id="@+id/job_weapons_value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/txt_margin"
-            android:layout_marginVertical="@dimen/small_margin"
-            android:textColor="@color/color_cat"
-            app:layout_constraintStart_toEndOf="@+id/job_weapons"
-            app:layout_constraintTop_toBottomOf="@+id/job_armors"/>
+            <TextView
+                android:id="@+id/job_weapons_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/small_margin"
+                android:layout_marginLeft="@dimen/txt_margin"
+                android:textColor="@color/color_cat"
+                app:layout_constraintStart_toEndOf="@+id/job_weapons"
+                app:layout_constraintTop_toBottomOf="@+id/job_armors" />
 
-        <TextView
-            android:id="@+id/job_throw_save"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginVertical="@dimen/small_margin"
-            android:text="@string/character_throw_save"
-            android:textColor="@color/color_cat"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/job_weapons"/>
+            <TextView
+                android:id="@+id/job_throw_save"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/small_margin"
+                android:text="@string/character_throw_save"
+                android:textColor="@color/color_cat"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/job_weapons" />
 
-        <TextView
-            android:id="@+id/job_throw_save_value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="@dimen/txt_margin"
-            android:layout_marginVertical="@dimen/small_margin"
-            android:textColor="@color/color_cat"
-            app:layout_constraintStart_toEndOf="@+id/job_throw_save"
-            app:layout_constraintTop_toBottomOf="@+id/job_weapons"/>
+            <TextView
+                android:id="@+id/job_throw_save_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/small_margin"
+                android:layout_marginLeft="@dimen/txt_margin"
+                android:textColor="@color/color_cat"
+                app:layout_constraintStart_toEndOf="@+id/job_throw_save"
+                app:layout_constraintTop_toBottomOf="@+id/job_weapons" />
+
+            <TextView
+                android:id="@+id/job_tool_masteries"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/small_margin"
+                android:text="@string/character_tool_masteries"
+                android:textColor="@color/color_cat"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/job_throw_save" />
+
+            <TextView
+                android:id="@+id/job_tool_masteries_value"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginVertical="@dimen/small_margin"
+                android:layout_marginLeft="@dimen/txt_margin"
+                android:textColor="@color/color_cat"
+                app:layout_constraintStart_toEndOf="@+id/job_tool_masteries"
+                app:layout_constraintTop_toBottomOf="@+id/job_throw_save_value" />
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <ImageView
             android:id="@+id/job_delete"
             android:layout_width="@dimen/button_mini"
             android:layout_height="@dimen/button_mini"
-            android:src="@drawable/delete"
-            android:layout_marginVertical="@dimen/small_margin"
             android:layout_marginHorizontal="@dimen/app_margin"
+            android:layout_marginVertical="@dimen/small_margin"
+            android:src="@drawable/delete"
             android:visibility="gone"
-            app:tint="@color/red"
-            app:layout_constraintTop_toBottomOf="@+id/job_layout"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/job_edit"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintTop_toBottomOf="@+id/job_layout"
+            app:tint="@color/red" />
 
         <ImageView
             android:id="@+id/job_edit"

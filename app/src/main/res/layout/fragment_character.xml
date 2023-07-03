@@ -90,9 +90,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginVertical="@dimen/txt_margin"
-                        android:text="Nocturne (prédateur)"
+                        android:text="Nocturne (prédateur) oui oui toussa c'est çasdfsfdsfsfs"
                         android:textColor="@color/color_txt"
+                        android:maxLines="4"
+                        android:maxEms="14"
                         app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintBottom_toTopOf="@+id/character_instinct_species"
                         app:layout_constraintTop_toBottomOf="@+id/character_measures" />
 
                     <TextView
@@ -100,6 +104,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginVertical="@dimen/txt_margin"
+                        android:maxLines="4"
+                        android:maxEms="14"
                         android:text="Méfiant"
                         android:textColor="@color/color_txt"
                         app:layout_constraintStart_toStartOf="parent"
